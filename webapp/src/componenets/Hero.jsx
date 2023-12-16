@@ -6,7 +6,7 @@ import './../../src/index.css'
 function Hero() {
   const navigate = useNavigate();
   return (
-    <div className="my-[50px] md:my-[100px]">
+    <div className="-mt-[50px] md:my-[100px]">
       {/* GRADIENT DIV */}
       <div className="absolute top-[100px] w-[200px] h-[160px] -z-10 inset-0 gradient-01 md:w-[500px]"></div>
 
@@ -15,8 +15,8 @@ function Hero() {
         <h1
           className="text-[40px] text-left mb-6 leading-[1.2] md:text-[4.5rem] md:leading-snug md:items-center md:text-center md:-mt-14"
         >
-          MAKE AND FIND YOUR  <br />{" "}
-          <span className="text-lavender font-sans">MUSIC</span> SECURELY
+          TO GIVE YOU BACK THE  <br />{" "}
+          <span className="text-lavender font-sans">CONTROL</span> OF YOUR <span className="text-lavender font-sans">CREATION</span>
         </h1>
 
         {/* SUB HEADING */}
