@@ -13,7 +13,7 @@ function Features() {
       <div className='bg-light_gray p-5 rounded-2xl flex flex-col items-center gap-y-4 text-center md:gap-y-10 md:py-10'>
         <img className='w-[100px]' src="./images/LOCK.png" alt="Write about your placemnt experiences" />
         <h2 className='text-2xl font-bold tracking-tighter md:text-3xl'>Own Your License</h2>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil quae tempora porro, facilis dignissimos possimus rerum cupiditate explicabo consequuntur asperiores.</p>
+        <p>Own Your License" revolutionizes music licensing with blockchain, granting artists true ownership and control. Smart contracts automate fair royalties, while tokenized engagement fosters direct artist-fan connections. Say goodbye to intermediaries and hello to a transparent, decentralized, and empowering future for the music industry.</p>
       </div>
 
       <div className="absolute">
@@ -23,13 +23,13 @@ function Features() {
       <div className='bg-light_gray p-5 rounded-2xl flex flex-col items-center gap-y-4 text-center md:gap-y-10 md:py-10'>
         <img className='w-[90px]' src="./images/accessLayer.png" alt="Write about your placemnt experiences" />
         <h2 className='text-2xl font-bold tracking-tighter md:text-3xl'>Access Control Layering</h2>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil quae tempora porro, facilis dignissimos possimus rerum cupiditate explicabo consequuntur asperiores.</p>
+        <p>Access Control Layering transforms security by implementing a robust system that safeguards data and resources. Using a multi-tiered approach, it adds layers of protection, ensuring only authorized users access sensitive information. This innovative strategy fortifies digital environments, minimizing vulnerabilities and reinforcing the integrity of access controls for enhanced cybersecurity.</p>
       </div>
 
       <div className='bg-light_gray p-5 rounded-2xl flex flex-col items-center gap-y-4 text-center md:gap-y-10 md:py-10'>
         <img className='w-[100px]' src="./images/IPFS.png" alt="Write about your placemnt experiences" />
         <h2 className='text-2xl font-bold tracking-tighter md:text-3xl'>IPFS for Smart and Secure</h2>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil quae tempora porro, facilis dignissimos possimus rerum cupiditate explicabo consequuntur asperiores.</p>
+        <p>IPFS (InterPlanetary File System) emerges as a smart and secure solution for decentralized data storage. By distributing files across a global network of nodes, it enhances reliability and resilience. IPFS's content-addressed model ensures data integrity, while cryptographic hashing bolsters security. It's a futuristic approach, reshaping how we store and retrieve information with intelligence and robust safeguards.</p>
       </div>
     </div>
   </div>
