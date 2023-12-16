@@ -1,9 +1,14 @@
 import React from 'react'
+import Navbar from '../componenets/Navbar'
+import Hero from '../componenets/Hero'
+import Features from '../componenets/Features'
 
 function HomePage() {
   return (
     <div>
-        <h1>HOMEPAGE</h1>
+        <Navbar />
+        <Hero />
+        <Features />
     </div>
   )
 }
