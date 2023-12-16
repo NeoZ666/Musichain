@@ -1,13 +1,28 @@
-import React from 'react'
-import UserSignUp from './pages/UserSingup'
+import React from "react";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import SignUp from "./pages/Signup";
+import Login from "./pages/Login";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <div> 
-      <h1 className='text-3xl font-bold bg-red-500'>HELLO WORLD</h1>
-      <UserSignUp />
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+
+      {/* Auth Routes */}
+      <Routes>
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+
+      <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

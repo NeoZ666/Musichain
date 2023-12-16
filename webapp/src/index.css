@@ -1,3 +1,57 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.input-wrapper {
+    position: relative;
+    /* max-width: 600px; */
+  }
+  
+  .input {
+    font-size: 20px;
+    padding: 8px 10px;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 10px;
+    transition: border-color 250ms;
+    background-color: transparent;
+    outline: #1c233d;
+  
+    &::focus {
+      outline: none;
+      border-color: #000;
+    }
+  
+    &::placeholder {
+      color: transparent;
+    }
+  
+    &::-webkit-contacts-auto-fill-button {
+      visibility: hidden;
+      pointer-events: none;
+      position: absolute;
+    }
+  }
+
+  .label-fixed{
+    font-size: 20px;
+    background-color: transparent;
+    padding: 0 5px;
+    position: absolute;
+    top: 9px;
+    left: 6px;
+    pointer-events: none;
+    transform-origin: left center;
+    transform: translateY(-80%) scale(0.75);
+    border-color: #000;
+    background-color: white;
+  }
+  
+  .input:focus + .label,
+  .input:not(:placeholder-shown) + .label {
+    transform: translateY(-80%) scale(0.75);
+    border-color: #000;
+    background-color: #1c233d;
+  }
+  
