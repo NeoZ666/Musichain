@@ -48,13 +48,13 @@ Before running the MusiChain web app, ensure you have the following installed:
 1. Clone the MusiChain repository:
 
    ```bash
-   git clone https://github.com/your-username/MusiChain.git
+   git clone https://github.com/NeoZ666/MusiChain.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd MusiChain
+   cd webapp
    ```
 
 3. Install dependencies:
