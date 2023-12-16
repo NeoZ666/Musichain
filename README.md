@@ -1,6 +1,5 @@
 # MusiChain Web3 Music App
-
-![MusiChain Logo](https://drive.google.com/file/d/1AfyzrstDdgyyqAZgiQioLg3fiKQLiVAu/view?usp=drive_link)
+https://ibb.co/S38jGZx
 
 Welcome to MusiChain, the innovative Web3 music app that empowers artists by allowing them to upload and license their music securely through blockchain-based tokens. MusiChain not only provides a decentralized platform for artists but also offers detailed analytics to help them understand how their music is performing on the platform.
 
