@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./pages/Signup";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
+import Artist from "./pages/Artist";
 
 function App() {
   return (
@@ -21,6 +22,11 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
       </Routes>
+
+      <Routes>
+        <Route path="/artist" element={<Artist />} />
+      </Routes>
+
     </BrowserRouter>
   );
 }

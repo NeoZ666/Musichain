@@ -1,90 +1,118 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 
-export default function SignUp() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [walletAdd, setWalletAdd] = useState("");
+const SignUp = () => {
+    const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      walletAddress: '',
+      password: '',
+      role: 'user',
+    });
+
+    const handleChange = (e) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // Add your signup logic here using the form data (formData)
+      console.log('Form Data:', formData);
+    };
+  
 
   return (
-    <div className="h-screen flex items-center justify-center md:flex-row-reverse md:justify-center md:gap-x-8">
-      <div className="flex flex-col items-center justify-center bg-brown-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 border border-gray-900 p-8 mb-20 md:mb-0">
-        <h1 className="text-5xl text-center font-semibold mb-4 md:text-light_purple">
-          USER SIGNUP
-        </h1>
-
-        <form className="flex flex-col z-20 gap-8 md:mt-10">
-          <div className="input-wrapper">
-            <input
-              type="text"
-              name="name"
-              className="input"
-              placeholder="Enter your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            ></input>
-            <label htmlFor="name" className="label-fixed">
+    <div className="min-h-screen flex items-center justify-center bg-gray-900">
+      <div className="bg-opacity-25 bg-blur w-96 p-8 rounded-md shadow-md">
+        <h3 className="text-3xl font-bold text-white mb-4">Sign Up</h3>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-sm font-medium text-white">
               Name
             </label>
-          </div>
-
-          <div className="input-wrapper">
             <input
               type="text"
-              name="email"
-              className="input"
-              placeholder="Enter your Email ID"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            ></input>
-            <label htmlFor="email" className="label-fixed">
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="mt-1 p-2 w-full border rounded-md"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-sm font-medium text-white">
               Email
             </label>
-          </div>
-
-          <div className="input-wrapper">
             <input
-              type="text"
-              name="walletAdd"
-              className="input"
-              placeholder="Enter your Wallet Address"
-              value={walletAdd}
-              onChange={(e) => setWalletAdd(e.target.value)}
-            ></input>
-            <label htmlFor="walletAdd" className="label-fixed">
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="mt-1 p-2 w-full border rounded-md"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="walletAddress" className="block text-sm font-medium text-white">
               Wallet Address
             </label>
-          </div>
-
-          <div className="input-wrapper">
             <input
-              type="password"
-              name="password"
-              placeholder="Enter your Password"
-              className="input"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></input>
-            <label htmlFor="password" className="label-fixed">
+              type="text"
+              id="walletAddress"
+              name="walletAddress"
+              value={formData.walletAddress}
+              onChange={handleChange}
+              className="mt-1 p-2 w-full border rounded-md"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-sm font-medium text-white">
               Password
             </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="mt-1 p-2 w-full border rounded-md"
+              required
+            />
           </div>
-          <div className="mx-auto text-lg">
-            <button
-              className="px-5 py-2 rounded-xl border-2 border-black bg-salte-200 text-black font-semibold hover:shadow-lg transition ease-in-out delay-[200] hover:shadow-black mb-2"
-              type="submit"
+          <div className="mb-4">
+            <label htmlFor="role" className="block text-sm font-medium text-white">
+              Role
+            </label>
+            <select
+              id="role"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              className="mt-1 p-2 w-full border rounded-md"
             >
-              SignUp
-            </button>
+              <option value="user">User</option>
+              <option value="artist">Artist</option>
+            </select>
           </div>
-          <span className="-mt-7 mx-auto text-lg text-gray-900">
-            Don't have an Account?{" "}
-            {/* <Link className="text-light_purple underline" to={"/signup"}> */}
-              Sign Up
-            {/* </Link> */}
-          </span>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+          >
+            Sign Up
+          </button>
         </form>
+        <p className="text-white mt-4">
+          Already have an account?{' '}
+          <Link to="/login" className="underline">
+            Log in here
+          </Link>
+        </p>
       </div>
     </div>
   );
-}
+};
+
+export default SignUp;
