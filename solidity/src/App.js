@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import Web3 from 'web3';
-import MusicLicensingContract from './MusicLicensingContract.json';
-import AppForm from './AppForm';
+import React, { useState } from "react";
+import Web3 from "web3";
+import MusicLicensingContract from "./MusicLicensingContract.json";
+import AppForm from "./AppForm";
 
 const App = () => {
   const [web3, setWeb3] = useState(null);
@@ -21,14 +21,14 @@ const App = () => {
         const networkId = await web3.eth.net.getId();
         const contractInstance = new web3.eth.Contract(
           MusicLicensingContract.abi,
-          '0xB1BDDD23843fc5832F060842a54d6AbD86EE09D2'
+          "0xB1BDDD23843fc5832F060842a54d6AbD86EE09D2"
         );
         setContract(contractInstance);
       } catch (error) {
-        console.error('Error initializing web3', error);
+        console.error("Error initializing web3", error);
       }
     } else {
-      console.error('Please install MetaMask to use this application');
+      console.error("Please install MetaMask to use this application");
     }
   };
 
@@ -36,19 +36,21 @@ const App = () => {
     try {
       // Check if MetaMask is connected
       if (!web3 || !account) {
-        console.error('MetaMask not connected');
+        console.error("MetaMask not connected");
         return;
       }
 
       // Convert fee to wei
       const feeInEther = formData.fee;
-      const feeInWei = web3.utils.toWei(feeInEther.toString(), 'ether');
+      const feeInWei = web3.utils.toWei(feeInEther.toString(), "ether");
 
       // Estimate gas
-      const gas = await contract.methods.completeLicenseTransaction().estimateGas({
-        from: account,
-        value: feeInWei,
-      });
+      const gas = await contract.methods
+        .completeLicenseTransaction()
+        .estimateGas({
+          from: account,
+          value: feeInWei,
+        });
 
       // Send transaction
       const result = await contract.methods.completeLicenseTransaction().send({
@@ -57,23 +59,30 @@ const App = () => {
         gas,
       });
 
-      console.log('Transaction result:', result);
+      console.log("Transaction result:", result);
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
     }
   };
 
   return (
+    // <div>
+    //   <h1>Music Licensing App</h1>
+    //   <div>
+    //     <p>Connected Account: {account}</p>
+    //     <AppForm onSubmit={handleFormSubmit} />
+    //   </div>
+    //   <p>Loading Web3...</p>
+    // </div>
+
     <div>
       <h1>Music Licensing App</h1>
-      {web3 && account ? (
-        <div>
-          <p>Connected Account: {account}</p>
-          <AppForm onSubmit={handleFormSubmit} />
-        </div>
-      ) : (
-        <p>Loading Web3...</p>
-      )}
+      <div>
+        <p>Connected Account: {account}</p>
+        <button onClick={initWeb3}>Connect MetaMask</button>
+        <AppForm onSubmit={handleFormSubmit} />
+      </div>
+      <p>Loading Web3...</p>
     </div>
   );
 };
