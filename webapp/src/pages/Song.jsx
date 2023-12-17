@@ -6,9 +6,6 @@ import Accordian from "../components/Accordian";
 export default function Song() {
   const navigate = useNavigate();
 
-export default function Song() {
-  const navigate = useNavigate();
-
   const [songs, setSongs] = useState([]);
 
   useEffect(() => {
@@ -64,9 +61,10 @@ export default function Song() {
                     onClick={() => navigate("/contract")}
                     className="bg-lavender mt-2 text-2xl py-2 px-5 rounded-xl"
                   ></button>
-                  <button 
-                  onClick={() => navigate("/contract")}
-                  className="bg-lavender mt-2 text-2xl py-2 px-5 rounded-xl">
+                  <button
+                    onClick={() => navigate("/contract")}
+                    className="bg-lavender mt-2 text-2xl py-2 px-5 rounded-xl"
+                  >
                     PAY ME
                   </button>
                 </div>
@@ -77,5 +75,4 @@ export default function Song() {
       </section>
     </div>
   );
-}
 }
