@@ -35,8 +35,8 @@ const App = () => {
   const handleFormSubmit = async (formData) => {
     try {
       // Check if MetaMask is connected
-      if (!web3 || !account) {
-        console.error("MetaMask not connected");
+      if (!contract || !web3 || !account) {
+        console.error("Contract or web3 or account not initialized");
         return;
       }
 
