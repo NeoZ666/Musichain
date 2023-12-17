@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { navigate } from "react-router-dom";
 import './../../src/index.css'
 
 function Hero() {

@@ -1,25 +1,58 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
-    const [formData, setFormData] = useState({
-      name: '',
-      email: '',
-      walletAddress: '',
-      password: '',
-      role: 'user',
-    });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    walletAddress: "",
+    password: "",
+    role: "user",
+    file: "", // Store file object here
+  });
 
-    const handleChange = (e) => {
+  const handleChange = (e) => {
+    if (e.target.name === "file") {
+      // If file input, store the file object
+      setFormData({ ...formData, file: e.target.files[0] });
+    } else {
+      // For other inputs, update form data as usual
       setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+  };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const formDataToSend = new FormData(); // Use FormData for file upload
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("walletAddress", formData.walletAddress);
+    formDataToSend.append("password", formData.password);
+    formDataToSend.append("role", formData.role);
+    formDataToSend.append("file", formData.file); // Append file
+
+    const requestOptions = {
+      method: "POST",
+      body: formDataToSend, // Send FormData object for file upload
     };
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      // Add your signup logic here using the form data (formData)
-      console.log('Form Data:', formData);
-    };
-  
+
+    try {
+      const res = await fetch(
+        "http://localhost:3001/api/v1/users/signup",
+        requestOptions
+      );
+
+      if (res.ok) {
+        const data = await res.json();
+        console.log("Data is uploaded", data);
+      } else {
+        console.error("Upload failed");
+      }
+    } catch (error) {
+      console.error("Error occurred:", error);
+    }
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
@@ -27,7 +60,11 @@ const SignUp = () => {
         <h3 className="text-3xl font-bold text-white mb-4">Sign Up</h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-white">
+            {" "}
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-white"
+            >
               Name
             </label>
             <input
@@ -36,12 +73,14 @@ const SignUp = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-md"
-              required
+              className="text-black mt-1 p-2 w-full border rounded-md"
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-white">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-white"
+            >
               Email
             </label>
             <input
@@ -50,12 +89,14 @@ const SignUp = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-md"
-              required
+              className="text-black mt-1 p-2 w-full border rounded-md"
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="walletAddress" className="block text-sm font-medium text-white">
+            <label
+              htmlFor="walletAddress"
+              className="block text-sm font-medium text-white"
+            >
               Wallet Address
             </label>
             <input
@@ -64,12 +105,39 @@ const SignUp = () => {
               name="walletAddress"
               value={formData.walletAddress}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-md"
-              required
+              className="text-black mt-1 p-2 w-full border rounded-md"
             />
           </div>
+
           <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-white">
+            <label
+              htmlFor="walletAddress"
+              className="block text-sm font-medium text-white"
+            >
+              Upload you User Profile
+            </label>
+            {/* <input
+              type="file"
+              id="file"
+              name="walletAddress"
+              value={formData.coverImage}
+              onChange={handleChange}
+              className="text-white mt-1 p-2 w-full border rounded-md"
+            /> */}
+            <input
+              type="file"
+              id="file"
+              name="file" // Change the name attribute to "file"
+              onChange={handleChange}
+              className="text-black mt-1 p-2 w-full border rounded-md"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-white"
+            >
               Password
             </label>
             <input
@@ -78,12 +146,14 @@ const SignUp = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-md"
-              required
+              className="text-black mt-1 p-2 w-full border rounded-md"
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="role" className="block text-sm font-medium text-white">
+            <label
+              htmlFor="role"
+              className="block text-sm font-medium text-white"
+            >
               Role
             </label>
             <select
@@ -105,7 +175,7 @@ const SignUp = () => {
           </button>
         </form>
         <p className="text-white mt-4">
-          Already have an account?{' '}
+          Already have an account?{" "}
           <Link to="/login" className="underline">
             Log in here
           </Link>

@@ -1,21 +1,73 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
+
+  //   const requestOptions = {
+  //     method: "POST",
+  //     body: JSON.stringify(formData),
+  //   };
+
+  //   console.log(requestOptions.body);
+  //   console.log("FORMDATA : ", formData);
+
+  //   try {
+  //     const res = await fetch(
+  //       "http://localhost:3001/api/v1/users/login",
+  //       requestOptions
+  //     );
+
+  //     if (res.ok) {
+  //       const data = await res.json();
+  //       console.log("Data is uploaded", data);
+  //     } else {
+  //       console.error("Upload failed");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error occurred:", error);
+  //   }
+  // }
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    // Add your login logic here using the form data (formData)
-    console.log('Login Data:', formData);
-  };
+
+    const requestOptions = {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const res = await fetch(
+        "http://localhost:3001/api/v1/users/login",
+        requestOptions
+      );
+
+      if (res.ok) {
+        const data = await res.json();
+        console.log("Data is uploaded", data);
+      } else {
+        console.error("Upload failed");
+      }
+
+      console.log("Response from server:", res); // Log the entire response
+    } catch (error) {
+      console.error("Error occurred:", error);
+    }
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
@@ -23,7 +75,10 @@ const Login = () => {
         <h3 className="text-3xl font-bold text-white mb-4">Login</h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-white">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-white"
+            >
               Email
             </label>
             <input
@@ -37,7 +92,10 @@ const Login = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-white">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-white"
+            >
               Password
             </label>
             <input
@@ -58,7 +116,7 @@ const Login = () => {
           </button>
         </form>
         <p className="text-white mt-4">
-          Don't have an account?{' '}
+          Don't have an account?{" "}
           <Link to="/signup" className="underline">
             Sign up here
           </Link>
@@ -68,6 +126,4 @@ const Login = () => {
   );
 };
 
-
-
-export default Login
+export default Login;
