@@ -1,1 +1,0 @@
-ipfs add "~\D:\Downloads\spotify-stories.png"

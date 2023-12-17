@@ -7,11 +7,8 @@ import HomePage from "./pages/HomePage";
 import Artist from "./pages/Artist";
 import Song from "./pages/Song";
 import Upload from "./pages/Upload";
-<<<<<<< Updated upstream
 import Solidity from "./components/solidity/Solidity";
-=======
 import { Toaster } from "react-hot-toast";
->>>>>>> Stashed changes
 
 function App() {
   return (
@@ -41,13 +38,10 @@ function App() {
         <Route path="/upload" element={<Upload />} />
       </Routes>
 
-<<<<<<< Updated upstream
       <Routes>
         <Route path="/contract" element={<Solidity />} />
       </Routes>
-=======
       <Toaster />
->>>>>>> Stashed changes
     </BrowserRouter>
   );
 }

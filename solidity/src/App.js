@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import Web3 from 'web3';
-import MusicLicensingContract from './MusicLicensingContract.json';
-import AppForm from './AppForm';
+import React, { useState, useEffect } from "react";
+import Web3 from "web3";
+import MusicLicensingContract from "./MusicLicensingContract.json";
+import AppForm from "../../webapp/src/components/solidity/AppForm";
 
-const contractAddress = '0x0F8f0C4B2e66f3C2b682CA1BCdF35d9d0f324729';
+const contractAddress = "0x0F8f0C4B2e66f3C2b682CA1BCdF35d9d0f324729";
 const contractABI = MusicLicensingContract.abi;
 
 const App = () => {
@@ -23,13 +23,16 @@ const App = () => {
           const accounts = await web3Instance.eth.getAccounts();
           setAccount(accounts[0]);
 
-          const contractInstance = new web3Instance.eth.Contract(contractABI, contractAddress);
+          const contractInstance = new web3Instance.eth.Contract(
+            contractABI,
+            contractAddress
+          );
           setContract(contractInstance);
         } catch (error) {
-          console.error('Error initializing web3', error);
+          console.error("Error initializing web3", error);
         }
       } else {
-        console.error('Please install MetaMask to use this application');
+        console.error("Please install MetaMask to use this application");
       }
     };
 
@@ -39,12 +42,15 @@ const App = () => {
   const handleFormSubmit = async (formData) => {
     try {
       if (!web3 || !account) {
-        console.error('MetaMask not connected');
+        console.error("MetaMask not connected");
         return;
       }
 
       const licenseFeeInEther = formData.licenseFee;
-      const licenseFeeInWei = web3.utils.toWei(licenseFeeInEther.toString(), 'ether');
+      const licenseFeeInWei = web3.utils.toWei(
+        licenseFeeInEther.toString(),
+        "ether"
+      );
 
       await contract.methods.payLicenseFee().send({
         from: account,
@@ -52,10 +58,10 @@ const App = () => {
         gas: 300000,
       });
 
-      setTransactionResult('Transaction successful');
+      setTransactionResult("Transaction successful");
     } catch (error) {
-      console.error('Error submitting form:', error);
-      setTransactionResult('Transaction failed');
+      console.error("Error submitting form:", error);
+      setTransactionResult("Transaction failed");
     }
   };
 

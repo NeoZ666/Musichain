@@ -24,25 +24,6 @@ function App() {
     const res = fetch("/upload");
   };
 
-  // const handleFileUpload = async () => {
-  //   if (file) {
-  //     const formData = new FormData();
-  //     formData.append("file", file);
-
-  //     const res = await fetch("http://localhost:5000/upload", {
-  //       method: "POST",
-  //       body: formData,
-  //     });
-
-  //     if (res.ok) {
-  //       const data = await res.json();
-  //       setUrlArr((prev) => [...prev, data.url]);
-  //     } else {
-  //       console.error("Upload failed");
-  //     }
-  //   }
-  // };
-
   useEffect(() => {
     fetch("http://localhost:5000/run-script")
       .then((response) => response.text())
