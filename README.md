@@ -75,7 +75,7 @@ Visit `http://localhost:3000` in your web browser to access the MusiChain applic
 
 ## 6. Feedback and Issues
 
-If you encounter any issues or have feedback, please [submit an issue](https://github.com/your-username/MusiChain/issues). We appreciate your input!
+If you encounter any issues or have feedback, please [submit an issue](https://github.com/NeoZ666/MusiChain/issues). We appreciate your input!
 
 ## 7. Contributing
 
