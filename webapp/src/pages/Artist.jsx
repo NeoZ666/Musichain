@@ -26,23 +26,24 @@ function Artist() {
     <div>
       <Navbar />
       <section className="mx-5 my-10 md:my-14 md:mx-10">
-        <h1 className="text-5xl font-bold mb-5 text-primary">Artists</h1>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 sm:grid-cols-1">
+        <h1 className="text-6xl text-center font-bold mb-5 text-primary text-lavender md:text-7xl">Artists</h1>
+        <p className="md:text-xl text-center">WE TUNE COLORS INTO DULL WORLD</p>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-5 sm:grid-cols-1 mt-10 md:mt-10">
           {artistData.map((item, i) => {
             // Preprocess the file.item data here
             const imagePath = item.file.split("\\")[1]; // Splitting by backslash and taking the second part
             
             return (
               <div className="box card text-center" key={i}>
-                <div className="img relative h-52 w-52 m-auto">
+                <div className="img relative h-[250px] w-[250px] m-auto">
                   <img
                     src={`http://localhost:3001/${imagePath}`}
                     alt="cover"
-                    className="w-full h-full object-cover rounded-full"
+                    className="w-full h-full object-cover rounded-[50px] border-2 border-slate-200 p-2"
                   />
                 </div>
                 <div className="text-center">
-                  <h3 className="text-md text-gray-500 font-semibold">
+                  <h3 className="text-md text-gray-500 font-semibold md:text-2xl md:mt-2">
                     {item.name}
                   </h3>
                 </div>
