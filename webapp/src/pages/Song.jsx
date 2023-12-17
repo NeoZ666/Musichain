@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import Accordian from "../components/Accordian";
+import { useNavigate } from "react-router-dom";
 
 export default function Song() {
+  const navigate = useNavigate();
+
   const [songs, setSongs] = useState([]);
 
   useEffect(() => {
@@ -54,7 +56,9 @@ export default function Song() {
                     {item.songName}
                   </h3>
                   <p>{item.songDesc}</p>
-                  <button className="bg-lavender mt-2 text-2xl py-2 px-5 rounded-xl">
+                  <button 
+                  onClick={() => navigate("/contract")}
+                  className="bg-lavender mt-2 text-2xl py-2 px-5 rounded-xl">
                     PAY ME
                   </button>
                 </div>
