@@ -114,6 +114,33 @@ try{
 }
 });
 
+
+exports.getArtistInfo = async (req, res) => {
+  try {
+    // Fetch users where role equals 'artist'
+    const artists = await User.find({ role: 'artist' }, 'name file');
+
+    res.status(200).json(artists); // Send only the names of artists in the response
+  } catch (err) {
+    console.error("ERROR", err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    // Fetch all users
+    const users = await User.find({});
+
+    res.status(200).json(users); // Send all users in the response
+  } catch (err) {
+    console.error("ERROR", err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
 exports.protect = (async (req, res, next) => {
   let token;
   //1) Getting the token and check if it's there.
