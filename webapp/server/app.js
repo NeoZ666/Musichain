@@ -10,6 +10,7 @@ const dotenv = require("dotenv");
 
 // MANUAL FILE IMPORTS :
 const userRoutes = require("./routes/userRoutes");
+const songRoutes = require("./routes/songRoutes");
 
 // INSTANCE OF EXPRESS :
 const app = express();
@@ -71,6 +72,7 @@ app.get("/test", (req, res) => {
 
 // ROUTE HANDLERS ==> MOUNTING THE ROUTER :
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/users", songRoutes);
 
 // ANY UNHANDLED ROUTE :
 app.all("*", (req, res, next) => {
