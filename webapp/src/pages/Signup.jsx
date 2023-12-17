@@ -11,15 +11,13 @@ const SignUp = () => {
     walletAddress: "",
     password: "",
     role: "user",
-    file: "", // Store file object here
+    file: "",
   });
 
   const handleChange = (e) => {
     if (e.target.name === "file") {
-      // If file input, store the file object
       setFormData({ ...formData, file: e.target.files[0] });
     } else {
-      // For other inputs, update form data as usual
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
   };

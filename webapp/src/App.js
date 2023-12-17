@@ -1,5 +1,4 @@
 import React from "react";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import SignUp from "./pages/Signup";
@@ -8,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import Artist from "./pages/Artist";
 import Song from "./pages/Song";
 import Upload from "./pages/Upload";
+import Solidity from "./components/solidity/Solidity";
 
 function App() {
   return (
@@ -37,6 +37,9 @@ function App() {
         <Route path="/upload" element={<Upload />} />
       </Routes>
 
+      <Routes>
+        <Route path="/contract" element={<Solidity />} />
+      </Routes>
     </BrowserRouter>
   );
 }
