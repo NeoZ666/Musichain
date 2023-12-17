@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -10,34 +13,6 @@ const Login = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-
-  //   const requestOptions = {
-  //     method: "POST",
-  //     body: JSON.stringify(formData),
-  //   };
-
-  //   console.log(requestOptions.body);
-  //   console.log("FORMDATA : ", formData);
-
-  //   try {
-  //     const res = await fetch(
-  //       "http://localhost:3001/api/v1/users/login",
-  //       requestOptions
-  //     );
-
-  //     if (res.ok) {
-  //       const data = await res.json();
-  //       console.log("Data is uploaded", data);
-  //     } else {
-  //       console.error("Upload failed");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error occurred:", error);
-  //   }
-  // }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -59,12 +34,16 @@ const Login = () => {
       if (res.ok) {
         const data = await res.json();
         console.log("Data is uploaded", data);
+
+        toast.success("Successfully Signed Up");
+        navigate("/");
       } else {
         console.error("Upload failed");
       }
 
       console.log("Response from server:", res); // Log the entire response
     } catch (error) {
+      toast.success("Something went wrong");
       console.error("Error occurred:", error);
     }
   }

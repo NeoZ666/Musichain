@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -46,7 +49,19 @@ const SignUp = () => {
       if (res.ok) {
         const data = await res.json();
         console.log("Data is uploaded", data);
+
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({
+            name: formData.name,
+            file: formData.file,
+          })
+        );
+
+        toast.success("Successfully Signed Up");
+        navigate("/");
       } else {
+        toast.error("Something went wrong");
         console.error("Upload failed");
       }
     } catch (error) {
@@ -116,20 +131,12 @@ const SignUp = () => {
             >
               Upload you User Profile
             </label>
-            {/* <input
-              type="file"
-              id="file"
-              name="walletAddress"
-              value={formData.coverImage}
-              onChange={handleChange}
-              className="text-white mt-1 p-2 w-full border rounded-md"
-            /> */}
             <input
               type="file"
               id="file"
               name="file" // Change the name attribute to "file"
               onChange={handleChange}
-              className="text-black mt-1 p-2 w-full border rounded-md"
+              className="text-white mt-1 p-2 w-full border rounded-md"
             />
           </div>
 

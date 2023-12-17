@@ -1,8 +1,8 @@
 import React from 'react'
-import Navbar from '../componenets/Navbar'
-import Hero from '../componenets/Hero'
-import Features from '../componenets/Features'
-import Footer from '../componenets/Footer'
+import Navbar from '../components/Navbar'
+import Hero from '../components/Hero'
+import Features from '../components/Features'
+import Footer from '../components/Footer'
 
 function HomePage() {
   return (

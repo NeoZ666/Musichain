@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Navbar from "../componenets/Navbar";
-import Accordian from "../componenets/Accordian";
+import Navbar from "../components/Navbar";
+import Accordian from "../components/Accordian";
 
 export default function Song() {
   const [accordions, setAccordion] = useState([
