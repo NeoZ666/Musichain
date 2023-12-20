@@ -1,27 +1,48 @@
 const Song = require("./../model/songModal");
 const fs = require("fs");
+const { NFTStorage, Blob } = require("nft.storage");
 
 const multer = require("multer");
 const uploadMiddleware = multer({ dest: "./uploads/" });
 
-exports.uploadFile = uploadMiddleware.single("songFile");
+exports.uploadFiles = uploadMiddleware.fields([
+  { name: "songFile", maxCount: 1 },
+  { name: "songTrack", maxCount: 1 },
+]);
 
 exports.uploadSong = async (req, res, next) => {
   try {
-    console.log("REQ FILE :", req.file);
+    // HANDLING THE SONG COVER IMAGE :
 
-    const { originalname, path } = req.file;
+    // console.log(req.files.songFile[0].originalname);
+
+    const { originalname, path } = req.files.songFile[0];
     const ext = originalname.split(".")[1];
-
-    console.log(ext);
-
     const newPath = path + "." + ext;
     fs.renameSync(path, newPath);
 
-    // 1) Check if the user has all the fields filled :
-    const { songName, artistName, songDesc, sonfFile = newPath } = req.body;
+    // console.log( "NEW PATH : ", newPath);
 
-    console.log("REQ BODY : ", req.body);
+    // HANDLING THE SONG track :
+    const songFilePath = req.files.songTrack[0].path;
+    const fileRead = fs.readFileSync(songFilePath);
+    // IPFS/nft-storage/main-branch
+    const client = new NFTStorage({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGJjOUZmMDcyQjA3ODAyZDU4YmI3NDc4YjZGNEVCRjNCNjQwNzhBRTkiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTcwMjk1NDI1MTY5NCwibmFtZSI6IlRlc3RLZXkifQ.7rw8QXtwHKs2SyYV25RMsfMjuCu9SoIHs4HUQ4h5B4c" });
+    const fileBlob = new Blob([fileRead]);
+    const fileCID = await client.storeBlob(fileBlob);
+
+    console.log("FILECID :", fileCID);
+
+    console.log({ fileCID });
+
+    // 1) Check if the user has all the fields filled :
+    const {
+      songName,
+      artistName,
+      songDesc,
+      sonfFile = newPath,
+      songTrack = fileCID,
+    } = req.body;
 
     // 3) If above both checks are passed, then start the process of creating new user :
     const songData = await Song.create({
@@ -29,15 +50,14 @@ exports.uploadSong = async (req, res, next) => {
       songDesc: req.body.songDesc,
       artistName: req.body.artistName,
       songFile: (req.body.songFile = newPath),
+      songTrack: (req.body.songTrack = fileCID),
     });
 
     await songData.save();
 
     res.status(200).json({
       message: "success",
-      songData: {
-        songData,
-      },
+      songData
     });
   } catch (e) {
     console.log("ERROR : ", e);

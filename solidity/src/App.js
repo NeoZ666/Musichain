@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import MusicLicensingContract from "./MusicLicensingContract.json";
 import AppForm from "../../webapp/src/components/solidity/AppForm";
+import toast from "react-hot-toast";
 
 const contractAddress = "0x0F8f0C4B2e66f3C2b682CA1BCdF35d9d0f324729";
 const contractABI = MusicLicensingContract.abi;
@@ -59,6 +60,7 @@ const App = () => {
       });
 
       setTransactionResult("Transaction successful");
+      toast.success("Transaction successful")
     } catch (error) {
       console.error("Error submitting form:", error);
       setTransactionResult("Transaction failed");

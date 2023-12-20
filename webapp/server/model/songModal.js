@@ -10,6 +10,9 @@ const songSchema = new mongoose.Schema({
   songDesc: {
     type: String,
   },
+  songTrack: {
+    type: String,
+  },
   songFile: {
     type: String,
   },
@@ -18,3 +21,5 @@ const songSchema = new mongoose.Schema({
 const Song = mongoose.model("Song", songSchema);
 
 module.exports = Song;
+
+

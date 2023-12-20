@@ -35,7 +35,7 @@ const Login = () => {
         const data = await res.json();
         console.log("Data is uploaded", data);
 
-        toast.success("Successfully Signed Up");
+        toast.success("Successfully Logged In");
         navigate("/");
       } else {
         console.error("Upload failed");
@@ -43,7 +43,7 @@ const Login = () => {
 
       console.log("Response from server:", res); // Log the entire response
     } catch (error) {
-      toast.success("Something went wrong");
+      toast.error("Something went wrong");
       console.error("Error occurred:", error);
     }
   }
@@ -89,7 +89,7 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+            className="w-full bg-blue-500 bg-lavender text-white p-2 rounded-md hover:bg-blue-600"
           >
             Login
           </button>

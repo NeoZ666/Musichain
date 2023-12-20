@@ -6,16 +6,22 @@ import Navbar from "../components/Navbar";
 const Upload = () => {
   const navigate = useNavigate();
 
+  // EXAMPLE URL :
+  // https://ipfs.io/ipfs/bafybeiejzv6qwndwaifsdpo3lanmnpisbz3yyd5u6dbmnxxzqd6pdnmyxy
+
   const [formData, setFormData] = useState({
     songName: "",
     songDesc: "",
-    songFile: "", // Initialize songFile as null
+    songFile: "", // Initialize songFile as null,
+    songTrack: "",
   });
 
   const handleChange = (e) => {
     if (e.target.name === "songFile") {
       // If file input, store the file object
-      setFormData({ ...formData, songFile: e.target.files[0] }); // Update songFile
+      setFormData({ ...formData, songFile: e.target.files[0] });
+    } else if (e.target.name === "songTrack") {
+      setFormData({ ...formData, songTrack: e.target.files[0] });
     } else {
       // For other inputs, update form data as usual
       setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,10 +35,13 @@ const Upload = () => {
     formDataToSend.append("songName", formData.songName);
     formDataToSend.append("songDesc", formData.songDesc);
     formDataToSend.append("songFile", formData.songFile);
+    formDataToSend.append("songTrack", formData.songTrack);
+
+    console.log("FROM DATA : ", formDataToSend);
 
     const requestOptions = {
       method: "POST",
-      body: formDataToSend, // Send FormData object for file upload
+      body: formDataToSend,
     };
 
     try {
@@ -45,7 +54,7 @@ const Upload = () => {
         const data = await res.json();
         console.log("Song is uploaded", data);
 
-        toast.success("Successfully Signed Up");
+        toast.success("Upload successful");
         navigate("/songs");
       } else {
         toast.error("Something went wrong");
@@ -84,6 +93,7 @@ const Upload = () => {
                 className="text-black mt-1 p-2 w-full border rounded-md"
               />
             </div>
+
             <div className="mb-4">
               <label
                 htmlFor="songDesc"
@@ -103,10 +113,26 @@ const Upload = () => {
 
             <div className="mb-4">
               <label
+                htmlFor="songDesc"
+                className="block text-sm font-medium text-white"
+              >
+                Upload your Track :
+              </label>
+              <input
+                type="file"
+                id="songTrack"
+                name="songTrack" // Change the name attribute to "file"
+                onChange={handleChange}
+                className="text-white mt-1 p-2 w-full border rounded-md"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label
                 htmlFor="songFile"
                 className="block text-sm font-medium text-white"
               >
-                Upload you TRACK :
+                Upload you Cover Image :
               </label>
               <input
                 type="file"

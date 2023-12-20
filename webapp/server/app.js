@@ -46,29 +46,18 @@ app.use(xss());
 
 // Backend - FrontEnd connections :
 app.use(cors());
-// app.use(
-//   cors({
-//     origin: ["http://localhost:5173", "http://localhost:3002"],
-//     credentials: true,
-//     methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
-//   })
-// );
+
+// >> CUSTOM MIDDLEWARE :
 // app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', 'http://localhost:5173',"http://localhost:3002");
-//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//   res.header('Access-Control-Allow-Headers', 'Content-Type');
+//   console.log("Hello from Middleware 🫂");
+//   console.log(req.headers);
 //   next();
 // });
-// >> CUSTOM MIDDLEWARE :
-app.use((req, res, next) => {
-  console.log("Hello from Middleware 🫂");
-  console.log(req.headers);
-  next();
-});
 
-app.get("/test", (req, res) => {
-  return res.json("Test");
-});
+// /test ROUTE :
+// app.get("/test", (req, res) => {
+//   return res.json("Test");
+// });
 
 // ROUTE HANDLERS ==> MOUNTING THE ROUTER :
 app.use("/api/v1/users", userRoutes);
