@@ -9,6 +9,7 @@ import Song from "./pages/Song";
 import Upload from "./pages/Upload";
 import Solidity from "./components/solidity/Solidity";
 import { Toaster } from "react-hot-toast";
+import Access from "./components/Access";
 
 function App() {
   return (
@@ -42,6 +43,11 @@ function App() {
         <Route path="/contract" element={<Solidity />} />
       </Routes>
       <Toaster />
+
+      {/* <Access
+        CID={"bafybeiejzv6qwndwaifsdpo3lanmnpisbz3yyd5u6dbmnxxzqd6pdnmyxy"}
+        flag={"false"}
+      /> */}
     </BrowserRouter>
   );
 }
