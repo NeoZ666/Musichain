@@ -17,6 +17,7 @@ const AppForm = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     onSubmit(formData);
     toast.success("Transaction successfull");
   };
