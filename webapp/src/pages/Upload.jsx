@@ -12,7 +12,7 @@ const Upload = () => {
   const [formData, setFormData] = useState({
     songName: "",
     songDesc: "",
-    songFile: "", // Initialize songFile as null,
+    songFile: "",
     songTrack: "",
   });
 

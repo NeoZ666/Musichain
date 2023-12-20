@@ -3,6 +3,7 @@ import Web3 from "web3";
 import MusicLicensingContract from "../../MusicLicensingContract.json";
 import AppForm from "./AppForm";
 
+
 const contractAddress = "0x0F8f0C4B2e66f3C2b682CA1BCdF35d9d0f324729";
 const contractABI = MusicLicensingContract.abi;
 
@@ -66,14 +67,13 @@ function Solidity() {
   };
 
   return (
-    <div>
-      <h1>Music Licensing Web App</h1>
-      <p>Connected Account: {account}</p>
+    <div className="mx-5 min-h-screen flex flex-wrap text-center flex-col justify-center items-center">
+      <h1 className="text-3xl md:text-4xl font-bold">Music Licensing Web App</h1>
+      <p className="text-xl mt-2">Connected Account: {account}</p>
       <AppForm onSubmit={handleFormSubmit} />
       {transactionResult && (
-        <div>
-          <h3>Transaction Result:</h3>
-          <p>{transactionResult}</p>
+        <div className="text-xl md:text-2xl">
+          <span className="font-bold">{transactionResult}</span>
         </div>
       )}
     </div>
