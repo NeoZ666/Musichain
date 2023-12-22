@@ -170,6 +170,7 @@ const SignUp = () => {
             >
               <option value="user">User</option>
               <option value="artist">Artist</option>
+              <option value="artist">Company</option>
             </select>
           </div>
           <button
