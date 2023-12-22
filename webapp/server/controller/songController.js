@@ -75,3 +75,19 @@ exports.getAllSongs = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+exports.getSongs = async (req, res) => {
+  try{
+    const artistSongs = await Song.find({ role: 'artist' });
+    
+    res.status(200).json({
+      message: "success",
+      lenght: artistSongs.length,
+      artistSongs,
+    })
+  }
+  catch(err){
+    console.log("ERROR : ", err)
+  }
+}
+

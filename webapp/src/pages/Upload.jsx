@@ -1,13 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Navbar from "../components/Navbar";
+import neo4j from "neo4j-driver";
 
 const Upload = () => {
   const navigate = useNavigate();
 
+  const [userData, setUserData] = useState(null);
+  useEffect(() => {
+    // Retrieve user information from local storage
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      const parsedUserData = JSON.parse(storedUserData);
+      setUserData(parsedUserData);
+      console.log(parsedUserData);
+    }
+  }, []);
+
   // EXAMPLE URL :
   // https://ipfs.io/ipfs/bafybeiejzv6qwndwaifsdpo3lanmnpisbz3yyd5u6dbmnxxzqd6pdnmyxy
+
+  const [artistInput, setArtistInput] = useState({
+    username: "",
+    numberOfSongs: 1,
+    views: 0,
+    wallet: 0,
+  });
+
+  const [songInput, setSongInput] = useState({
+    title: "",
+    description: "",
+    views: 0,
+  });
 
   const [formData, setFormData] = useState({
     songName: "",
@@ -25,12 +50,22 @@ const Upload = () => {
     } else {
       // For other inputs, update form data as usual
       setFormData({ ...formData, [e.target.name]: e.target.value });
+      setSongInput({...formData, [e.target.name] : e.target.value});
     }
   };
 
   async function handleSubmit(e) {
     e.preventDefault();
 
+    // SONG CIRCLE DETAILS :
+    const uri = "neo4j+s://65e55caf.databases.neo4j.io";
+    const user = "neo4j";
+    const password = "hVUozIMUzjjnf8IxrcTyt15ASaEodaErxR-PgzAcdrw";
+
+    const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
+    const session = driver.session();
+
+    // WEB2 Form handling :
     const formDataToSend = new FormData(); // Use FormData for file upload
     formDataToSend.append("songName", formData.songName);
     formDataToSend.append("songDesc", formData.songDesc);
@@ -45,6 +80,26 @@ const Upload = () => {
     };
 
     try {
+      const createArtistQuery = `
+      CREATE (artist:Artist $artistInput)
+    `;
+      await session.run(createArtistQuery, { formData });
+
+      const createSongQuery = `
+      CREATE (song:Song $songInput)
+    `;
+      await session.run(createSongQuery, { songInput });
+
+      const createRelationshipQuery = `
+      MATCH (artist:Artist {username: $artistUsername}),
+            (song:Song {title: $songTitle})
+      CREATE (artist)-[:owns]->(song)
+    `;
+      await session.run(createRelationshipQuery, {
+        artistUsername: userData?.name,
+        songTitle: formData?.songName,
+      });
+
       const res = await fetch(
         "http://localhost:3001/api/v1/users/uploadSong",
         requestOptions
@@ -62,6 +117,9 @@ const Upload = () => {
       }
     } catch (error) {
       console.error("Error occurred:", error);
+    } finally {
+      session.close();
+      driver.close();
     }
   }
 
