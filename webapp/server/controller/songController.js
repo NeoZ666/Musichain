@@ -1,8 +1,10 @@
 const Song = require("./../model/songModal");
 const fs = require("fs");
 const { NFTStorage, Blob } = require("nft.storage");
+// const {useState, useEffect} = require("react")
 
 const multer = require("multer");
+const { useState, useEffect } = require("react");
 const uploadMiddleware = multer({ dest: "./uploads/" });
 
 exports.uploadFiles = uploadMiddleware.fields([
@@ -27,7 +29,10 @@ exports.uploadSong = async (req, res, next) => {
     const songFilePath = req.files.songTrack[0].path;
     const fileRead = fs.readFileSync(songFilePath);
     // IPFS/nft-storage/main-branch
-    const client = new NFTStorage({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGJjOUZmMDcyQjA3ODAyZDU4YmI3NDc4YjZGNEVCRjNCNjQwNzhBRTkiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTcwMjk1NDI1MTY5NCwibmFtZSI6IlRlc3RLZXkifQ.7rw8QXtwHKs2SyYV25RMsfMjuCu9SoIHs4HUQ4h5B4c" });
+    const client = new NFTStorage({
+      token:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGJjOUZmMDcyQjA3ODAyZDU4YmI3NDc4YjZGNEVCRjNCNjQwNzhBRTkiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTcwMjk1NDI1MTY5NCwibmFtZSI6IlRlc3RLZXkifQ.7rw8QXtwHKs2SyYV25RMsfMjuCu9SoIHs4HUQ4h5B4c",
+    });
     const fileBlob = new Blob([fileRead]);
     const fileCID = await client.storeBlob(fileBlob);
 
@@ -57,7 +62,7 @@ exports.uploadSong = async (req, res, next) => {
 
     res.status(200).json({
       message: "success",
-      songData
+      songData,
     });
   } catch (e) {
     console.log("ERROR : ", e);
@@ -77,17 +82,18 @@ exports.getAllSongs = async (req, res) => {
 };
 
 exports.getSongs = async (req, res) => {
-  try{
-    const artistSongs = await Song.find({ role: 'artist' });
-    
+  try {
+
+    console.log(req.user);
+
+    const artistSongs = await Song.find({ artistName: req.user.name });
+
     res.status(200).json({
       message: "success",
-      lenght: artistSongs.length,
+      length: artistSongs.length,
       artistSongs,
-    })
+    });
+  } catch (err) {
+    console.log("ERROR : ", err);
   }
-  catch(err){
-    console.log("ERROR : ", err)
-  }
-}
-
+};

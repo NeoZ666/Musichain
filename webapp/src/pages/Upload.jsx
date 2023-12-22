@@ -54,6 +54,8 @@ const Upload = () => {
     }
   };
 
+  setArtistInput({username : userData?.name});
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -84,7 +86,7 @@ const Upload = () => {
       const createArtistQuery = `
       CREATE (artist:Artist $artistInput)
     `;
-      await session.run(createArtistQuery, { formData });
+      await session.run(createArtistQuery, { artistInput });
 
       const createSongQuery = `
       CREATE (song:Song $songInput)
