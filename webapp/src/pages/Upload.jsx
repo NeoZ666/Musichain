@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Navbar from "../components/Navbar";
 
 const Upload = () => {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    // Retrieve user information from local storage
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      const parsedUserData = JSON.parse(storedUserData);
+      setUserData(parsedUserData);
+      console.log(parsedUserData);
+    }
+  }, []);
 
   // EXAMPLE URL :
   // https://ipfs.io/ipfs/bafybeiejzv6qwndwaifsdpo3lanmnpisbz3yyd5u6dbmnxxzqd6pdnmyxy
@@ -33,6 +44,7 @@ const Upload = () => {
 
     const formDataToSend = new FormData(); // Use FormData for file upload
     formDataToSend.append("songName", formData.songName);
+    formDataToSend.append("artistName", userData?.name);
     formDataToSend.append("songDesc", formData.songDesc);
     formDataToSend.append("songFile", formData.songFile);
     formDataToSend.append("songTrack", formData.songTrack);
