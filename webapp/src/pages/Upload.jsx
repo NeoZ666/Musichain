@@ -69,6 +69,7 @@ const Upload = () => {
     const formDataToSend = new FormData(); // Use FormData for file upload
     formDataToSend.append("songName", formData.songName);
     formDataToSend.append("songDesc", formData.songDesc);
+    formDataToSend.append("artistName", userData?.name);
     formDataToSend.append("songFile", formData.songFile);
     formDataToSend.append("songTrack", formData.songTrack);
 
