@@ -45,10 +45,10 @@ function App() {
       </Routes>
       <Toaster />
 
-      {/* <Access
+      <Access
         CID={"bafybeiejzv6qwndwaifsdpo3lanmnpisbz3yyd5u6dbmnxxzqd6pdnmyxy"}
         flag={"false"}
-      /> */}
+      />
 
       <Routes>
         <Route path="/payment" element={<Payment />} />
