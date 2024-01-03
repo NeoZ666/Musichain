@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
+import ArtistCard from "../components/ArtistCard";
+import NeovisComponent from "../components/NeovisComponent";
 
 function Artist() {
   const [artistData, setArtistData] = useState([]);
 
+  const artists = [
+    {
+      name: "Artist 1",
+      events: ["Event 1", "Event 2", "Event 3"],
+    },
+  ];
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/v1/users/getArtistInfo");
+        const response = await fetch(
+          "http://localhost:3001/api/v1/users/getArtistInfo"
+        );
         if (response.ok) {
           const data = await response.json();
           setArtistData(data);
@@ -26,13 +37,15 @@ function Artist() {
     <div>
       <Navbar />
       <section className="mx-5 my-10 md:my-14 md:mx-10">
-        <h1 className="text-6xl text-center font-bold mb-5 text-primary text-lavender md:text-7xl">Artists</h1>
+        <h1 className="text-6xl text-center font-bold mb-5 text-primary text-lavender md:text-7xl">
+          Artists
+        </h1>
         <p className="md:text-xl text-center">WE TUNE COLORS INTO DULL WORLD</p>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-5 sm:grid-cols-1 mt-10 md:mt-10">
           {artistData.map((item, i) => {
             // Preprocess the file.item data here
             const imagePath = item.file.split("\\")[1]; // Splitting by backslash and taking the second part
-            
+
             return (
               <div className="box card text-center" key={i}>
                 <div className="img relative h-[250px] w-[250px] m-auto">
@@ -52,6 +65,15 @@ function Artist() {
           })}
         </div>
       </section>
+
+      <div className="container mx-auto mt-8 p-4">
+        <h1 className="text-2xl font-bold mb-4 text-purple-800">Artists</h1>
+        {artists.map((artist, index) => (
+          <ArtistCard key={index} artist={artist} />
+        ))}
+      </div>
+
+      <NeovisComponent />
     </div>
   );
 }

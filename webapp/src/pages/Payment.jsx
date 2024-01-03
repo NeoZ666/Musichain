@@ -213,6 +213,84 @@ function Payment() {
         </div>
       </div>
     </section>
+
+    // <section className="text-gray-600 body-font h-screen flex items-center justify-center">
+    //   <div className="container px-5 py-24 mx-auto">
+    //     <div className="flex flex-wrap -m-4">
+    //       <div className="lg:w-1/3 lg:mb-0 p-4">
+    //         <div className="h-full border-2 border-gray-200 rounded-lg overflow-hidden transform transition duration-300 hover:scale-105">
+    //           <div className="w-20 h-20 mb-8 bg-gray-200 rounded-full flex items-center justify-center">
+    //             {/* Replace the image with custom content */}
+    //             <span className="text-4xl">A</span>
+    //           </div>
+    //           <div className="text-center">
+    //             <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm">
+    //               1 Month Subscription
+    //             </h2>
+    //             <p className="leading-relaxed">
+    //               Get the 1 Month Subscription of MusiChain.
+    //             </p>
+    //             <button
+    //               type="button"
+    //               onClick={() => makePayment(100)}
+    //               className="bg-indigo-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-indigo-600 transition duration-300 mt-4"
+    //             >
+    //               Pay with Stripe
+    //             </button>
+    //           </div>
+    //         </div>
+    //       </div>
+
+    //       <div className="lg:w-1/3 lg:mb-0 p-4">
+    //         <div className="h-full border-2 border-gray-200 rounded-lg overflow-hidden transform transition duration-300 hover:scale-105">
+    //           <div className="w-20 h-20 mb-8 bg-gray-200 rounded-full flex items-center justify-center">
+    //             {/* Replace the image with custom content */}
+    //             <span className="text-4xl">A</span>
+    //           </div>
+    //           <div className="text-center">
+    //             <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm">
+    //               6 Months Subscription
+    //             </h2>
+    //             <p className="leading-relaxed">
+    //               Get the 6 Months Subscription of MusiChain.
+    //             </p>
+    //             <button
+    //               type="button"
+    //               onClick={() => makePayment(600)}
+    //               className="bg-indigo-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-indigo-600 transition duration-300 mt-4"
+    //             >
+    //               Pay with Stripe
+    //             </button>
+    //           </div>
+    //         </div>
+    //       </div>
+
+    //       <div className="lg:w-1/3 lg:mb-0 p-4">
+    //         <div className="h-full border-2 border-gray-200 rounded-lg overflow-hidden transform transition duration-300 hover:scale-105">
+    //           <div className="w-20 h-20 mb-8 bg-gray-200 rounded-full flex items-center justify-center">
+    //             {/* Replace the image with custom content */}
+    //             <span className="text-4xl">A</span>
+    //           </div>
+    //           <div className="text-center">
+    //             <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm">
+    //               Annual Subscription
+    //             </h2>
+    //             <p className="leading-relaxed">
+    //               Get the Annual Subscription of MusiChain.
+    //             </p>
+    //             <button
+    //               type="button"
+    //               onClick={() => makePayment3(1200)}
+    //               className="bg-indigo-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-indigo-600 transition duration-300 mt-4"
+    //             >
+    //               Pay with Stripe
+    //             </button>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </section>
   );
 }
 
