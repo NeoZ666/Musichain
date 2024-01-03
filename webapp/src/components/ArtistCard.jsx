@@ -4,6 +4,45 @@ import { PaperClipIcon } from "@heroicons/react/outline";
 const ArtistCard = ({ artist }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const makePayment = async () => {
+    const plans = [
+      {
+        name: "Exclusive Access to Event",
+        price: 50,
+      },
+    ];
+    const stripe = await loadStripe(
+      "pk_test_51Nk7IzSEBFON0EJBUBJSTdEuns8D1cKcVCeq1927785ziBknaTz0NzNKaEYsHaCdtVwxtHlLViFTezfDzZ7HcLam00YiYPxonf"
+    );
+
+    const body = {
+      plans: plans,
+    };
+
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    const response = await fetch(
+      "http://localhost:7000/api/create-checkout-session",
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      }
+    );
+
+    const session = await response.json();
+
+    const result = stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      console.log(result.error.message);
+    }
+  };
+
   const posts = [
     {
       name: "Artist 1",
@@ -16,74 +55,6 @@ const ArtistCard = ({ artist }) => {
   };
 
   return (
-    // dont use this very f**ed up
-    // <div className="bg-purple-200 rounded-lg p-4 mb-4">
-    //   <div
-    //     className="flex items-center justify-between cursor-pointer"
-    //     onClick={toggleAccordion}
-    //   >
-    //     <h2 className="text-lg font-semibold text-purple-800">{artist.name}</h2>
-    //     <svg
-    //       className={`w-6 h-6 text-purple-800 ${
-    //         isExpanded ? "transform rotate-180" : ""
-    //       }`}
-    //       fill="none"
-    //       stroke="currentColor"
-    //       viewBox="0 0 24 24"
-    //       xmlns="http://www.w3.org/2000/svg"
-    //     >
-    //       <path
-    //         strokeLinecap="round"
-    //         strokeLinejoin="round"
-    //         strokeWidth="2"
-    //         d="M19 9l-7 7-7-7"
-    //       ></path>
-    //     </svg>
-    //   </div>
-    //   {isExpanded && (
-    //     <div className="max-w-sm w-full lg:max-w-full lg:flex">
-    //       <div
-    //         className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-    //         style={{ backgroundImage: "url('/img/card-left.jpg')" }}
-    //         title="Woman holding a mug"
-    //       >
-    //         {/* Image from the web */}
-    //         <img
-    //           src="https://via.placeholder.com/150"
-    //           alt="Woman holding a mug"
-    //         />
-    //       </div>
-    //       <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-    //         <div className="mb-8">
-    //           <p className="text-sm text-gray-600 flex items-center">
-    //             {/* Your content here */}
-    //             Members only
-    //           </p>
-    //           <div className="text-gray-900 font-bold text-xl mb-2">
-    //             Can coffee make you a better developer?
-    //           </div>
-    //           <p className="text-gray-700 text-base">
-    //             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-    //             Voluptatibus quia, nulla! Maiores et perferendis eaque,
-    //             exercitationem praesentium nihil.
-    //           </p>
-    //         </div>
-    //         <div className="flex items-center">
-    //           <img
-    //             className="w-10 h-10 rounded-full mr-4"
-    //             src="/img/jonathan.jpg"
-    //             alt="Avatar of Jonathan Reinink"
-    //           />
-    //           <div className="text-sm">
-    //             <p className="text-gray-900 leading-none">Jonathan Reinink</p>
-    //             <p className="text-gray-600">Aug 18</p>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   )}
-    // </div>
-
     // this is somewhat okayish table
     <div>
       <div className="px-4 sm:px-0">
@@ -112,7 +83,7 @@ const ArtistCard = ({ artist }) => {
               with my fans.
             </dd>
             <button
-              // onClick={} // Corrected onClick handler
+              onClick={makePayment()} // Corrected onClick handler
               className="block md:text-[20px] md:py-4 md:px-8 py-2 px-4 bg-gradient-to-r from-lavender via-pink-400 to-dark_purple rounded-xl text-slate-200 hover:bg-dark_purple active:bg-light_purple md:hidden"
             >
               Join this Event
