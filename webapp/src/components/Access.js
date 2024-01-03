@@ -5,6 +5,8 @@ function Access(props) {
   // bafybeiejzv6qwndwaifsdpo3lanmnpisbz3yyd5u6dbmnxxzqd6pdnmyxy
   const storedInDB = props.CID + "true";
   const companyHas = props.CID + props.flag;
+  // locahost/Txn Hash + true ==> song is available ipfs.io/ipfs/CID wala page
+  // locahost/Txn Hash + false ==> you dont have access
 
   // Helper function to convert string to hex
   const stringToHex = (str) => {

@@ -10,7 +10,7 @@ function NeovisComponent() {
         containerId: "viz",
         neo4j: {
           // serverUrl: "bolt://localhost:7687",
-          // serverUser: "neo4j",
+          serverUser: "neo4j",
           // serverPassword: "12345678",
           serverUrl: "bolt://16cea75e.databases.neo4j.io",
           serverPassword: "_swaqDxanVf1hK9fLCRaAbWarE74c_03lH8PlKgnKq0",
