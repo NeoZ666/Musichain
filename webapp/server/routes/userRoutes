@@ -8,4 +8,6 @@ router.post("/login", authController.login);
 router.get('/getArtistInfo', authController.getArtistInfo);
 router.get('/getAllUsers', authController.getAllUsers);
 
+router.get('/:artistName', authController.artistProfile);
+
 module.exports = router;

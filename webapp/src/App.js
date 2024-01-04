@@ -5,11 +5,13 @@ import SignUp from "./pages/Signup";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import Artist from "./pages/Artist";
+import SingleArtist from "./pages/SingleArtist";
 import Song from "./pages/Song";
 import Upload from "./pages/Upload";
 import Solidity from "./components/solidity/Solidity";
 import { Toaster } from "react-hot-toast";
 import Payment from "./pages/Payment";
+import SuccessPage from "./pages/SuccessPage";
 // import Access from "./components/Access";
 
 function App() {
@@ -33,6 +35,10 @@ function App() {
       </Routes>
 
       <Routes>
+        <Route path="/artist/Drake" element={<SingleArtist />} />
+      </Routes>
+
+      <Routes>
         <Route path="/songs" element={<Song />} />
       </Routes>
 
@@ -42,6 +48,10 @@ function App() {
 
       <Routes>
         <Route path="/contract" element={<Solidity />} />
+      </Routes>
+
+      <Routes>
+        <Route path="/success" element={<SuccessPage />} />
       </Routes>
       <Toaster />
 

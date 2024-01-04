@@ -51,8 +51,7 @@ const SignUp = () => {
         localStorage.setItem(
           "userData",
           JSON.stringify({
-            name: formData.name,
-            file: formData.file,
+            name: formData.name
           })
         );
 

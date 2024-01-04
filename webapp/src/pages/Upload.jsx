@@ -15,8 +15,10 @@ const Upload = () => {
     views: 0,
     wallet: "0xec88e00039294b99FfcdAc480C05A77C5F1d4229",
   });
-  const IPFS_APIKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGJjOUZmMDcyQjA3ODAyZDU4YmI3NDc4YjZGNEVCRjNCNjQwNzhBRTkiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTcwMzY2NjE1MzI3NiwibmFtZSI6InRlc3RrZXkifQ.0pNEM9Vv5GCD_njOskpExjU4G17YRecXw4xFww0CRkU";
-  const nftstorage = new NFTStorage({token: IPFS_APIKEY});
+
+  const IPFS_APIKEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGJjOUZmMDcyQjA3ODAyZDU4YmI3NDc4YjZGNEVCRjNCNjQwNzhBRTkiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTcwMzY2NjE1MzI3NiwibmFtZSI6InRlc3RrZXkifQ.0pNEM9Vv5GCD_njOskpExjU4G17YRecXw4xFww0CRkU";
+  const nftstorage = new NFTStorage({ token: IPFS_APIKEY });
 
   async function uploadFile(file) {
     const fr = new FileReader();
@@ -24,14 +26,14 @@ const Upload = () => {
 
     fr.onloadend = async () => {
       const fileBlob = new Blob([fr.result]);
+
+      console.log(fileBlob);
       const fileCid = await nftstorage.storeBlob(fileBlob);
       console.log({ fileCid });
 
-      setCID( fileCid ); 
+      setCID(fileCid);
     };
   }
-
-
 
   useEffect(() => {
     const storedUserData = localStorage.getItem("userData");
@@ -51,12 +53,15 @@ const Upload = () => {
     songFile: null,
     songTrack: "",
   });
-  
+
   const handleChange = (e) => {
-    if (e.target.name === "songFile" || e.target.name === "songTrack") {
+    if (e.target.name === "songTrack") {
       const file = e.target.files[0];
       setFormData({ ...formData, [e.target.name]: file });
       uploadFile(file);
+    } else if (e.target.name === "songFile") {
+      const file = e.target.files[0];
+      setFormData({ ...formData, [e.target.name]: file });
     } else {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
@@ -72,12 +77,15 @@ const Upload = () => {
     const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
     const session = driver.session();
 
-    const formDataToSend = new FormData();
+    let formDataToSend;
+    formDataToSend = new FormData();
     formDataToSend.append("songName", formData.songName);
     formDataToSend.append("songDesc", formData.songDesc);
     formDataToSend.append("artistName", artistInput.username);
     formDataToSend.append("songFile", formData.songFile);
     formDataToSend.append("songTrack", formData.songTrack);
+    
+    console.log("FORMDATATOSEND : ", formDataToSend);
 
     const requestOptions = {
       method: "POST",
@@ -96,7 +104,6 @@ const Upload = () => {
         songName: formData.songName,
         songDesc: formData.songDesc,
       });
-    
 
       const createRelationshipQuery = `
         MATCH (artist:Artist {username: $artistUsername}),
@@ -108,10 +115,9 @@ const Upload = () => {
         songName: formData.songName,
       });
 
-      const res = await fetch(
-        "http://localhost:3001/api/v1/users/uploadSong",
-        requestOptions
-      );
+      const res = await fetch("http://localhost:3001/api/v1/users/uploadSong", {
+        requestOptions,
+      });
 
       if (res.ok) {
         const data = await res.json();
@@ -214,7 +220,7 @@ const Upload = () => {
               UPLOAD YOUR TRACK
             </button>
           </form>
-          {cid && <p>https://ipfs.io/ipfs/{cid}</p>}
+          {/* {cid && <p>https://ipfs.io/ipfs/{cid}</p>} */}
         </div>
       </div>
     </div>

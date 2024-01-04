@@ -6,6 +6,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
   });
@@ -35,6 +36,13 @@ const Login = () => {
         const data = await res.json();
         console.log("Data is uploaded", data);
 
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({
+            name: formData.name
+          })
+        );
+
         toast.success("Successfully Logged In");
         navigate("/");
       } else {
@@ -53,6 +61,23 @@ const Login = () => {
       <div className="bg-opacity-25 bg-blur w-96 p-8 rounded-md shadow-md">
         <h3 className="text-3xl font-bold text-white mb-4">Login</h3>
         <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-white"
+            >
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="mt-1 p-2 w-full border rounded-md text-black"
+              required
+            />
+          </div>
           <div className="mb-4">
             <label
               htmlFor="email"

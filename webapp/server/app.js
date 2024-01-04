@@ -2,7 +2,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const reteLimit = require("express-rate-limit");
+// const reteLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
@@ -26,12 +26,12 @@ dotenv.config({ path: "/env" });
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 // Limit requests from same API
-const limiter = reteLimit({
-  max: 100,
-  windowMs: 60 * 60 * 1000,
-  message: "Too many requests from this IP Address, try again after 1 hour",
-});
-app.use("/api", limiter);
+// const limiter = reteLimit({
+//   max: 100,
+//   windowMs: 60 * 60 * 1000,
+//   message: "Too many requests from this IP Address, try again after 1 hour",
+// });
+// app.use("/api", limiter);
 
 // Body Parser, reading data from req.body :
 app.use(express.json());
