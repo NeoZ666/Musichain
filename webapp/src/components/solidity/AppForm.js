@@ -106,7 +106,7 @@ function AppForm() {
   const [amount, setAmount] = useState(30);
   const [licensor, setLicensor] = useState("");
   const [account, setAccount] = useState("");
-  const [days, setDays] = useState(1);
+  const [days, setDays] = useState(30);
 
   const requestAccount = async () => {
     if (typeof window !== "undefined" && typeof window.ethereum !== 'undefined') {
@@ -191,38 +191,41 @@ function AppForm() {
   }, [days]);
 
   return (
-    <div className="App">
-      <div className="App-header">
-        <h1>Lock Contract</h1>
-        <h3>Interact with the Lock contract</h3>
-        <div className="custom-buttons">
-          <button onClick={sendPayment} style={{ backgroundColor: "green" }}>
-            Send Payment
-          </button>
-          <button onClick={updateLicensor} style={{ backgroundColor: "red" }}>
-            Update Licensor
-          </button>
-          <button onClick={emitEvent} style={{ backgroundColor: "blue" }}>
-            Emit Event
-          </button>
-        </div>
+    <div className="App break-inside-avoid rounded-lg border border-gray-300 bg-slate-800 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter h-fit">
+      <div className="App-header ">
+        
 
-      <div>
+      <div className="text-lg mb-4">
         Total Payable Amount: {amount} ETH
       </div>
-      <div className="custom-input">
-        Enter Number of Days:
+      <div className="custom-input my-4">
+        Enter Number of Days : 
         <input
+          className="p-2 rounded-lg text-center text-black ml-4 w-[50px]"
           type="text"
+          value={days}
           onChange={(e) => setDays(e.target.value)}
           placeholder="Enter Number of Days"
         /></div>
         <input
+          className="hidden"
           onChange={(e) => setLicensor(e.target.value)}
           value={licensor}
           placeholder="Enter new licensor address"
         />
       </div>
+
+      <div className="custom-buttons my-2">
+          <button className="py-2 px-4 rounded-lg mr-2" onClick={sendPayment} style={{ backgroundColor: "rgba(215, 1, 255, 0.28)", border: "2px solid rgba(215, 1, 255, 0.76)" }}>
+            Send Payment
+          </button>
+          <button className="hidden" onClick={updateLicensor} style={{ backgroundColor: "red" }}>
+            Update Licensor
+          </button>
+          <button className="py-2 px-4 rounded-lg" onClick={emitEvent} style={{ backgroundColor: "rgba(34, 1, 255, 0.28)", border: "2px solid rgba(34, 1, 255, 0.76)" }}>
+            Emit Event
+          </button>
+        </div>
     </div>
   );
 }
