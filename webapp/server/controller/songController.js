@@ -1,6 +1,8 @@
 const Song = require("./../model/songModal");
 const fs = require("fs");
-const { NFTStorage, Blob } = require("nft.storage");
+const { NFTStorage, File } = require("nft.storage");
+const { CarWriter } = require('@ipld/car/api');
+
 
 const multer = require("multer");
 const uploadMiddleware = multer({ dest: "./uploads/" });
@@ -14,25 +16,32 @@ exports.uploadSong = async (req, res, next) => {
   try {
     // HANDLING THE SONG COVER IMAGE :
 
-    // console.log(req.files.songFile[0].originalname);
-
+    console.log(req.files.songFile[0].originalname);
+    console.log(req.files);
     const { originalname, path } = req.files.songFile[0];
+  
     const ext = originalname.split(".")[1];
     const newPath = path + "." + ext;
     fs.renameSync(path, newPath);
 
     // console.log( "NEW PATH : ", newPath);
 
+    
     // HANDLING THE SONG track :
     const songFilePath = req.files.songTrack[0].path;
-    const fileRead = fs.readFileSync(songFilePath);
+    const fileRead = fs.createReadStream(songFilePath);
     // IPFS/nft-storage/main-branch
     const client = new NFTStorage({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGJjOUZmMDcyQjA3ODAyZDU4YmI3NDc4YjZGNEVCRjNCNjQwNzhBRTkiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTcwMjk1NDI1MTY5NCwibmFtZSI6IlRlc3RLZXkifQ.7rw8QXtwHKs2SyYV25RMsfMjuCu9SoIHs4HUQ4h5B4c" });
-    const fileBlob = new Blob([fileRead]);
-    const fileCID = await client.storeBlob(fileBlob);
+    // const fileBuffer = Buffer.from(fileRead);
+    // console.log("FILEBLOB :", fileRead);
+    // console.log(client);
+    // const fileCID = await client.storeBlob(fileRead);
 
+    const { writer, out } = await CarWriter.create([{ cid: fileRead, size: fileRead.length }]);
+    await writer.close();
+    const fileCID = await client.storeCar(out);
     console.log("FILECID :", fileCID);
-
+  
     console.log({ fileCID });
 
     // 1) Check if the user has all the fields filled :
@@ -40,7 +49,7 @@ exports.uploadSong = async (req, res, next) => {
       songName,
       artistName,
       songDesc,
-      sonfFile = newPath,
+      songFile = newPath,
       songTrack = fileCID,
     } = req.body;
 
