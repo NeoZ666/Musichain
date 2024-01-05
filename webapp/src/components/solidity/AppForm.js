@@ -134,3 +134,111 @@ function AppForm() {
 }
 
 export default AppForm;
+
+
+
+// import React, { useState, useEffect } from "react";
+// import Web3 from "web3";
+// import neo4j from "neo4j-driver";
+
+// // ... (other code)
+
+// const AppForm = () => {
+//   // ... (existing state and functions)
+
+//   async function handleSubmit(e) {
+//     e.preventDefault();
+
+//     // ... (existing code)
+
+//     // Neo4j connection details
+//     const uri = "neo4j+s://YOUR_NEO4J_URI"; // Replace with your Neo4j URI
+//     const user = "YOUR_NEO4J_USERNAME"; // Replace with your Neo4j username
+//     const password = "YOUR_NEO4J_PASSWORD"; // Replace with your Neo4j password
+
+//     const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
+//     const session = driver.session();
+
+//     const {
+//       songName,
+//       songDesc,
+//       songFile,
+//       songTrack
+//     } = formData;
+
+//     const {
+//       companyName,
+//       wallet,
+//       licenseFee,
+//       views,
+//       deadline
+//     } = licensingCompanyData; // Assuming you have this data somewhere in your component
+
+//     const txnHash = "TXN_HASH"; // Replace with actual transaction hash
+//     const aclToken = "ACL_TOKEN"; // Replace with actual ACL token
+
+//     try {
+//       // Neo4j queries
+//       const createSongQuery = `
+//         CREATE (song:Song { 
+//           songName: $songName, 
+//           accessFlag: false, 
+//           txnHash: $txnHash, 
+//           aclToken: $aclToken 
+//         })
+//       `;
+
+//       const createLicensingCompanyQuery = `
+//         CREATE (licensingCompany:LicensingCompany { 
+//           companyName: $companyName, 
+//           wallet: $wallet, 
+//           licenseFee: $licenseFee, 
+//           views: $views, 
+//           deadline: $deadline 
+//         })
+//       `;
+
+//       const createLicensingToRelationshipQuery = `
+//         MATCH (song:Song { songName: $songName }), 
+//               (licensingCompany:LicensingCompany { companyName: $companyName })
+//         CREATE (licensingCompany)-[:LicensingTo { 
+//           accessFlag: false, 
+//           txnHash: $txnHash, 
+//           aclToken: $aclToken 
+//         }]->(song)
+//       `;
+
+//       await session.run(createSongQuery, {
+//         songName,
+//         txnHash,
+//         aclToken
+//       });
+
+//       await session.run(createLicensingCompanyQuery, {
+//         companyName,
+//         wallet,
+//         licenseFee,
+//         views,
+//         deadline
+//       });
+
+//       await session.run(createLicensingToRelationshipQuery, {
+//         songName,
+//         companyName,
+//         txnHash,
+//         aclToken
+//       });
+
+//       // ... (existing code)
+//     } catch (error) {
+//       console.error("Error occurred:", error);
+//     } finally {
+//       session.close();
+//       driver.close();
+//     }
+//   }
+
+//   // ... (rest of the component)
+// };
+
+// export default AppForm;
