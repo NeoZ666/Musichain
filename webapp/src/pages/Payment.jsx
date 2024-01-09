@@ -151,7 +151,7 @@ function Payment() {
                 1 Month Subscription
               </h2>
               <p className="leading-relaxed">
-                Get the monthly premium subscription of MusiChain.
+                Get the monthly premium subscription of Sollertia.
               </p>
               <button
                 type="button"
@@ -174,7 +174,7 @@ function Payment() {
                 6 Months Subscription
               </h2>
               <p className="leading-relaxed">
-                Get the half-yearly premium subscription of MusiChain.
+                Get the half-yearly premium subscription of Sollertia.
               </p>
               <button
                 type="button"
@@ -197,7 +197,7 @@ function Payment() {
                 Annual Subscription
               </h2>
               <p className="leading-relaxed">
-                Get the yearly premium subscription of MusiChain.
+                Get the yearly premium subscription of Sollertia.
               </p>
               <button
                 type="button"
@@ -228,7 +228,7 @@ function Payment() {
     //               1 Month Subscription
     //             </h2>
     //             <p className="leading-relaxed">
-    //               Get the 1 Month Subscription of MusiChain.
+    //               Get the 1 Month Subscription of Sollertia.
     //             </p>
     //             <button
     //               type="button"
@@ -252,7 +252,7 @@ function Payment() {
     //               6 Months Subscription
     //             </h2>
     //             <p className="leading-relaxed">
-    //               Get the 6 Months Subscription of MusiChain.
+    //               Get the 6 Months Subscription of Sollertia.
     //             </p>
     //             <button
     //               type="button"
@@ -276,7 +276,7 @@ function Payment() {
     //               Annual Subscription
     //             </h2>
     //             <p className="leading-relaxed">
-    //               Get the Annual Subscription of MusiChain.
+    //               Get the Annual Subscription of Sollertia.
     //             </p>
     //             <button
     //               type="button"

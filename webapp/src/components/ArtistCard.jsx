@@ -78,7 +78,7 @@ const ArtistCard = ({ artist }) => {
               Event
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              Watch me perform live on MusiChain on 15th January 2024 at 8:00
+              Watch me perform live on Sollertia on 15th January 2024 at 8:00
               PM. I will be performing my latest songs and will be interacting
               with my fans.
             </dd>
