@@ -142,7 +142,7 @@ const SignUp = () => {
               htmlFor="password"
               className="block text-sm font-medium text-white"
             >
-              Password
+              Nilanchal
             </label>
             <input
               type="password"
@@ -166,8 +166,9 @@ const SignUp = () => {
               value={formData.role}
               onChange={handleChange}
               className="mt-1 p-2 w-full border rounded-md"
+              style={{color: "black"}}
             >
-              <option value="user">User</option>
+              <option value="user">NILANCHAL</option>
               <option value="artist">Artist</option>
               <option value="artist">Company</option>
             </select>
@@ -179,12 +180,12 @@ const SignUp = () => {
             Sign Up
           </button>
         </form>
-        <p className="text-white mt-4">
+        {/* <p className="text-white mt-4">
           Already have an account?{" "}
-          <Link to="/login" className="underline">
+          <Link href="/login" className="underline text-white">
             Log in here
           </Link>
-        </p>
+        </p> */}
       </div>
     </div>
   );

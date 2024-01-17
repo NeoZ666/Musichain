@@ -3,7 +3,7 @@ import React from 'react'
 function Features() {
   return (
     <div className='my-[50px] md:my-[200px]'>
-    <p className='text-slate-200/50 text-center'>How MusiChain works</p>
+    <p className='text-slate-200/50 text-center'>How Sollertia works</p>
     <h1 className='text-4xl font-bold text-slate-200 text-center md:text-6xl md:mb-10'>Write & share your Music</h1>
     <div className="relative">
         <div className='h-[200px] w-56 gradient-02 -z-10'></div>
