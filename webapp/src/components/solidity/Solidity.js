@@ -65,17 +65,16 @@ function Solidity() {
       setTransactionResult("Transaction successful");
     }
   };
-
   return (
     <div className="mx-5 min-h-screen flex flex-wrap text-center flex-col justify-center items-center">
-      <h1 className="text-3xl md:text-4xl font-bold">Music Licensing Web App</h1>
-      <p className="text-xl mt-2">Connected Account: {account}</p>
-      <AppForm onSubmit={handleFormSubmit} />
+      <h1 className="text-3xl md:text-[100px] font-bold flex justify-center items-center"> <span><img src="./images/MUSICHAIN.png" alt="" width={100}/></span> Dark Side</h1>
+      <p className="text-md mb-4">Connected Account: {account}</p>
       {transactionResult && (
         <div className="text-xl md:text-2xl">
           <span className="font-bold">{transactionResult}</span>
         </div>
       )}
+      <AppForm onSubmit={handleFormSubmit} />
     </div>
   );
 }

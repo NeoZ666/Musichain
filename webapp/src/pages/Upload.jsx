@@ -70,9 +70,11 @@ const Upload = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const uri = "neo4j+s://16cea75e.databases.neo4j.io";
+    // const uri = "neo4j+s://16cea75e.databases.neo4j.io";
+    // const password = "_swaqDxanVf1hK9fLCRaAbWarE74c_03lH8PlKgnKq0";
     const user = "neo4j";
-    const password = "_swaqDxanVf1hK9fLCRaAbWarE74c_03lH8PlKgnKq0";
+    const password = "12345678";
+    const uri = "bolt://localhost:7687";
 
     const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
     const session = driver.session();
