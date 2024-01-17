@@ -117,10 +117,11 @@ const Upload = () => {
         songName: formData.songName,
       });
 
-      const res = await fetch("http://localhost:3001/api/v1/users/uploadSong", {
+      const res = await fetch("http://localhost:3002/api/v1/users/uploadSong", {
         requestOptions,
       });
 
+      console.log("RES : ", res);
       if (res.ok) {
         const data = await res.json();
         console.log("Song is uploaded", data);
