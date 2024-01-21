@@ -139,8 +139,8 @@ const Upload = () => {
     } catch (error) {
       console.error("Error occurred:", error);
     } finally {
-      // session.close();
-      // driver.close();
+      session.close();
+      driver.close();
       console.log("UPLOAD CODE COMPLETED");
     }
   }
