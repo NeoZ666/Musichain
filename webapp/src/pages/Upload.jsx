@@ -72,12 +72,12 @@ const Upload = () => {
 
     // const uri = "neo4j+s://16cea75e.databases.neo4j.io";
     // const password = "_swaqDxanVf1hK9fLCRaAbWarE74c_03lH8PlKgnKq0";
-    // const user = "neo4j";
-    // const password = "12345678";
-    // const uri = "bolt://localhost:7687";
+    const user = "neo4j";
+    const password = "12345678";
+    const uri = "bolt://localhost:7687";
 
-    // const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
-    // const session = driver.session();
+    const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
+    const session = driver.session();
 
     let formDataToSend;
     formDataToSend = new FormData();
@@ -98,31 +98,27 @@ const Upload = () => {
     console.log(requestOptions);
 
     try {
-      // const createArtistQuery = `
-      //   CREATE (artist:Artist $artistInput)
-      // `;
-      // await session.run(createArtistQuery, { artistInput });
+      const createArtistQuery = `
+        CREATE (artist:Artist $artistInput)
+      `;
+      await session.run(createArtistQuery, { artistInput });
 
-      // const createSongQuery = `
-      // CREATE (song:Song {songName: $songName, songDesc: $songDesc})`;
-      // await session.run(createSongQuery, {
-      //   songName: formData.songName,
-      //   songDesc: formData.songDesc,
-      // });
+      const createSongQuery = `
+      CREATE (song:Song {songName: $songName, songDesc: $songDesc})`;
+      await session.run(createSongQuery, {
+        songName: formData.songName,
+        songDesc: formData.songDesc,
+      });
 
-      // const createRelationshipQuery = `
-      //   MATCH (artist:Artist {username: $artistUsername}),
-      //         (song:Song {songName: $songName})
-      //   CREATE (artist)-[:owns]->(song)
-      // `;
-      // await session.run(createRelationshipQuery, {
-      //   artistUsername: artistInput.username,
-      //   songName: formData.songName,
-      // });
-
-      // const res = await fetch("http://localhost:3001/api/v1/users/uploadSong", {
-      //   requestOptions,
-      // });
+      const createRelationshipQuery = `
+        MATCH (artist:Artist {username: $artistUsername}),
+              (song:Song {songName: $songName})
+        CREATE (artist)-[:owns]->(song)
+      `;
+      await session.run(createRelationshipQuery, {
+        artistUsername: artistInput.username,
+        songName: formData.songName,
+      });
 
       const res = await fetch(
         "http://localhost:3001/api/v1/users/uploadSong",
