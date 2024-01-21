@@ -45,12 +45,15 @@ const SuccessPage = () => {
       });
   };
 
+  const cid = "https://bafybeieqk54xq4iofv4q6wumppve53mipdbptuqmws4ufgn4dz2cd7k3a4.ipfs.nftstorage.link/"
+
   return (
     <div className="flex justify-center items-center min-h-screen">
       <img src="./images/CONGRATS.png" alt="CONGRATS MESSAGE" />
+      <div className="text-white text-2xl font-bold mt-10">Song in now licensed to you</div>
 
       <div className="flex gap-x-10 items-center break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter">
-        <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam id at maiores saepe? Enim minus placeat in laboriosam nemo voluptate?</h1>
+        <h1>{cid}</h1>
         <div>
           <img
             src="./images/copy.svg"

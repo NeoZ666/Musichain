@@ -3,10 +3,13 @@ import Web3 from "web3";
 // import Lock from "../../../../hardhat_musichain/src/artifacts/contracts/Locksol/Lock.json";
 import Lock from "./Lock.json";
 import toast from "react-hot-toast";
+import SuccessPage from "../../pages/SuccessPage";
+import { useNavigate } from "react-router-dom";
 
 const LockAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
 function AppForm() {
+  const navigate = useNavigate();
   const [amount, setAmount] = useState(30);
   const [licensor, setLicensor] = useState("");
   const [account, setAccount] = useState("");
@@ -90,6 +93,7 @@ function AppForm() {
             toast.error("Error emitting event");
         }
     }
+    navigate("/success");
   }
   useEffect(() => {
     requestAccount();
