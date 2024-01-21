@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 // import Lock from "../../../../hardhat_musichain/src/artifacts/contracts/Locksol/Lock.json";
 import Lock from "./Lock.json";
+import toast from "react-hot-toast";
 
 const LockAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
@@ -10,6 +11,7 @@ function AppForm() {
   const [licensor, setLicensor] = useState("");
   const [account, setAccount] = useState("");
   const [days, setDays] = useState(30);
+
 
   const requestAccount = async () => {
     if (typeof window !== "undefined" && typeof window.ethereum !== 'undefined') {
@@ -40,8 +42,10 @@ function AppForm() {
         });
         setAmount("");
         console.log("Payment Sent Successfully");
+        toast.success("Payment Sent Successfully");
       } catch (error) {
         console.error("Error sending payment:", error);
+        toast.error("Error sending payment");
       }
     }
   }
@@ -80,8 +84,10 @@ function AppForm() {
         try {
             await contract.methods.emitMusicDetails(days, amount, "My Song").send({ from: accounts[0] });
             console.log("Event emitted successfully");
+            toast.success("Event emitted successfully");
         } catch (error) {
             console.error("Error emitting event:", error);
+            toast.error("Error emitting event");
         }
     }
   }
@@ -121,9 +127,6 @@ function AppForm() {
       <div className="custom-buttons my-2">
           <button className="py-2 px-4 rounded-lg mr-2" onClick={sendPayment} style={{ backgroundColor: "rgba(215, 1, 255, 0.28)", border: "2px solid rgba(215, 1, 255, 0.76)" }}>
             Send Payment
-          </button>
-          <button className="hidden" onClick={updateLicensor} style={{ backgroundColor: "red" }}>
-            Update Licensor
           </button>
           <button className="py-2 px-4 rounded-lg" onClick={emitEvent} style={{ backgroundColor: "rgba(34, 1, 255, 0.28)", border: "2px solid rgba(34, 1, 255, 0.76)" }}>
             Emit Event

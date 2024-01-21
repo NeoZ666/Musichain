@@ -142,7 +142,7 @@ const SignUp = () => {
               htmlFor="password"
               className="block text-sm font-medium text-white"
             >
-              Nilanchal
+              Password
             </label>
             <input
               type="password"
@@ -168,7 +168,7 @@ const SignUp = () => {
               className="mt-1 p-2 w-full border rounded-md"
               style={{color: "black"}}
             >
-              <option value="user">NILANCHAL</option>
+              <option value="user">User</option>
               <option value="artist">Artist</option>
               <option value="artist">Company</option>
             </select>

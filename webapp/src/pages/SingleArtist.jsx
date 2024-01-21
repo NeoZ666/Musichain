@@ -38,7 +38,7 @@ function SingleArtist() {
       <div className="w-[80%] mx-auto">
         <div className="flex justify-center items-center gap-x-10">
           <img
-            src="http://localhost:3001/b5deb214b1bf48aeeaccbf7c37e79093.jpg"
+            src="http://localhost:3001/c9def01cdf4c50a8f08a4a16c2809713.jpg"
             alt="Drake"
             width={500}
             className="rounded-[70px] border border-slate-200 p-2"

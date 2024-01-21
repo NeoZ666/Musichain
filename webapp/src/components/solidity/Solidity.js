@@ -11,7 +11,7 @@ function Solidity() {
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [account, setAccount] = useState(null);
-  const [transactionResult, setTransactionResult] = useState(null);
+  const [transactionResult, setTransactionResult] = useState("");
 
   useEffect(() => {
     const initWeb3 = async () => {
