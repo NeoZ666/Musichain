@@ -11,12 +11,15 @@ export default function Song() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3001/api/v1/users/getAllSongs"
+          "http://localhost:3001/api/v1/users/Drake/getSongs"
         );
+
+        console.log(response);
 
         if (response.ok) {
           const data = await response.json();
-          setSongs(data);
+          setSongs(data.artistSongs);
+          console.log( "DATA : ", data.artistSongs);
           console.log({ data });
         } else {
           console.error("Failed to fetch artist data");
@@ -38,7 +41,7 @@ export default function Song() {
         </h1>
         <p className="md:text-xl text-center">WE TUNE COLORS INTO DULL WORLD</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:grid-cols-1 mt-10 md:mt-10">
-          {songs.map((item, i) => {
+          {songs?.map((item, i) => {
             // Preprocess the file.item data here
             const imagePath = item.songFile.split("\\")[1]; // Splitting by backslash and taking the second part
 

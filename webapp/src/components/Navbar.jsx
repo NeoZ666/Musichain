@@ -46,9 +46,11 @@ export default function Navbar() {
         <li>
           <NavLink to="/songs">SONGS</NavLink>
         </li>
-        <li>
-          <NavLink to="/upload">UPLOAD</NavLink>
-        </li>
+        {userData && (
+          <li>
+            <NavLink to="/upload">UPLOAD</NavLink>
+          </li>
+        )}
 
         {userData ? (
           <div className="flex items-center">

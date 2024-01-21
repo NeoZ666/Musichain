@@ -13,13 +13,6 @@ exports.uploadFiles = uploadMiddleware.fields([
 exports.uploadSong = async (req, res, next) => {
   console.log("DATA 16");
   try {
-    // HANDLING THE SONG COVER IMAGE :
-    // console.log(req.files);
-    // console.log(req.files.songTrack[0].originalname);
-
-    if (!req.files || !req.files.songFile || req.files.songFile.length === 0) {
-      throw new Error("No songFile found in request or it's empty.");
-    }
 
     // IMAGE :
     const { originalname, path } = req.files.songFile[0];
@@ -33,48 +26,17 @@ exports.uploadSong = async (req, res, next) => {
 
     // console.log( "NEW PATH : ", newPath);
 
-    // HANDLING THE SONG track :
-    const songFilePath = req.files.songTrack[0].path;
-
-    // console.log(songFilePath);
-    const fileRead = fs.readFileSync(songFilePath);
-
-    console.log( "FILE READ : ", fileRead);
-    // IPFS/nft-storage/main-branch
-    const client = new NFTStorage({
-      token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGJjOUZmMDcyQjA3ODAyZDU4YmI3NDc4YjZGNEVCRjNCNjQwNzhBRTkiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTcwMjk1NDI1MTY5NCwibmFtZSI6IlRlc3RLZXkifQ.7rw8QXtwHKs2SyYV25RMsfMjuCu9SoIHs4HUQ4h5B4c",
-    });
-
-    // console.log("DATA 49");
-    const fileBlob = new Blob([fileRead]);
-
-    console.log(fileBlob)
-
-    // // IDHAR TA HO RAHA HAI
-    // console.log("DATA 55");
-
-    // const fileCID = await client.storeBlob(fileBlob);
-
-    // console.log("DATA 60");
-
-    // if(!fileCID){
-    //   throw new Error("FILECID is found in request or it's empty.");
-    // }
-
-    // console.log("FILE CID : ", fileCID)
-
-    // console.log({ fileCID });
-
     console.log("DATA 43");
 
     // 1) Check if the user has all the fields filled :
+
+    console.log("REQ BODY : ", req.body);
+
     const {
       songName,
       artistName,
       songDesc,
       songFile = newPath,
-      // songTrack = fileCID,
     } = req.body;
 
     console.log("REQ.BODY :", req.body);
@@ -87,7 +49,6 @@ exports.uploadSong = async (req, res, next) => {
       songDesc: req.body.songDesc,
       artistName: req.body.artistName,
       songFile: (req.body.songFile = newPath),
-      // songTrack: (req.body.songTrack = fileCID),
     });
 
     await songData.save();
@@ -102,9 +63,14 @@ exports.uploadSong = async (req, res, next) => {
 };
 
 exports.getAllSongs = async (req, res) => {
+  console.log("SONGS CONTROLLER");
+
   try {
+    console.log("SONGS CONTROLLER inside");
     // Fetch all users
-    const songs = await Song.find({});
+    const songs = await Song.find();
+
+    console.log(songs);
 
     res.status(200).json(songs); // Send all users in the response
   } catch (err) {
