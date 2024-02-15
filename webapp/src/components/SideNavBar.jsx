@@ -1,9 +1,25 @@
 import { useState } from "react";
-// import { RxHamburgerMenu } from "react-icons/rx";
-// import { IoMdClose } from "react-icons/io";
-import { NavLink } from "react-router-dom";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { IoMdClose } from "react-icons/io";
+import { NavLink, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function SideNavBar() {
+  const navigate = useNavigate();
+
+  // Function to handle navigation
+  // function handleNavigation(to){
+  //   navigate(to);
+  // }
+
+  const handleLogout = () => {
+    // Clear the localStorage
+    localStorage.clear();
+    toast.success("Logoged Out successfuly")
+    // Redirect the user to the login or signup page after logout
+    navigate("/");
+  };
+
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
@@ -16,13 +32,12 @@ function SideNavBar() {
   }
 
   return (
-    <div className="bg-black relative">
+    <div className="bg-black relative z-[1000]">
       <span
         className="absolute text-black text-4xl -top-12 left-4 cursor-pointer"
         onClick={Openbar}
       >
-        {/* <RxHamburgerMenu /> */}
-        +
+        <RxHamburgerMenu />
       </span>
       <div
         className={`bg-black fixed top-0 bottom-0 lg:left-0 ${
@@ -38,14 +53,13 @@ function SideNavBar() {
 
             {/* CLOSE ICON */}
             <div className="block md:hidden ml-36" onClick={Openbar}>
-              {/* <IoMdClose size={30} /> */}
-              X
+              <IoMdClose size={30} />
             </div>
           </div>
           <hr className="my-2 text-gray-600" />
 
           <div>
-          <div className="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+            <div className="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
               {/* END-TO-END PIPELINE ICON */}
               <NavLink
                 to={"/dashboard/pipeline"}
@@ -133,15 +147,13 @@ function SideNavBar() {
             </div>
             <div className="absolute w-[94%] bottom-2 p-2.5 mt-2 flex bg-red-300 items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-red-600">
               {/* END-TO-END PIPELINE */}
-              <span className="text-[15px]  ml-4 text-gray-200">Logout</span>
+              <button
+                onClick={handleLogout}
+                className="text-[15px]  ml-4 text-gray-200"
+              >
+                LOGOUT
+              </button>
             </div>
-
-            {/* <div className="absolute bottom-10 p-2.5 mt-3 flex items-start rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-              <span className="text-[15px] ml-4 text-gray-200">Profile</span>
-            </div>
-            <div className="absolute bottom-2  p-2.5 mt-3 flex items-start rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-              <span className="text-[15px] ml-4 text-gray-200">Logout</span>
-            </div> */}
           </div>
         </div>
       </div>

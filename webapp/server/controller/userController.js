@@ -48,13 +48,13 @@ exports.signup = async (req, res, next) => {
   try {
     console.log("REQ FILE :", req.file);
 
-    const { originalname, path } = req.file;
-    const ext = originalname.split(".")[1];
+    // const { originalname, path } = req.file;
+    // const ext = originalname.split(".")[1];
 
-    console.log(ext);
+    // console.log(ext);
 
-    const newPath = path + "." + ext;
-    fs.renameSync(path, newPath);
+    // const newPath = path + "." + ext;
+    // fs.renameSync(path, newPath);
 
     // 1) Check if the user has all the fields filled :
     const {
@@ -62,7 +62,7 @@ exports.signup = async (req, res, next) => {
       email,
       password,
       walletAddress,
-      file = newPath,
+      // file = newPath,
       role,
     } = req.body;
     // 2) Check for existing user with same email address :
@@ -76,7 +76,7 @@ exports.signup = async (req, res, next) => {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      file: (req.body.file = newPath),
+      // file: (req.body.file = newPath),
       walletAddress: req.body.walletAddress,
       role: req.body.role,
     });
@@ -120,6 +120,9 @@ exports.login = async (req, res, next) => {
 // ALL ARTIST PAGE GET ROUTE
 exports.getArtistInfo = async (req, res) => {
   try {
+
+    console.log( "REQ USER : ", req.user);
+
     // Fetch users where role equals 'artist'
     const artists = await User.find({ role: "artist" }, "name file");
 
@@ -152,8 +155,23 @@ exports.artistProfile = async (req, res) => {
   }
 };
 
+exports.getSingleArtist = async(req, res) => {
+  try{
+    const {id} = req.user;
+
+    const artist = await User.findById(id);
+    console.log(artist);
+
+    res.status(200).json(artist); // Send only the names of artists in the response
+  } catch (err) {
+    console.error("ERROR", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
 exports.protect = async (req, res, next) => {
   let token;
+  console.log( "HEADER : ", req.headers.authorization);
   //1) Getting the token and check if it's there.
   if (
     req.headers.authorization &&
@@ -167,8 +185,9 @@ exports.protect = async (req, res, next) => {
     );
   }
 
+
   //2) Verification the token --> ErrorController of prod mode not working
-  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  const decoded = await promisify(jwt.verify)(token, "my-name-is-nilanchala-panda-who-stays-in-goregaon-mumbai");
 
   //3) If user still exists.
   const currentUser = await User.findById(decoded.id);

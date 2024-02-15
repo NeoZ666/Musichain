@@ -220,13 +220,13 @@ function App() {
     setSummary('');
   };
 
-  const onDocumentLoadSuccess = ({ numPages }) => {
-    setNumPages(numPages);
-  };
+//   const onDocumentLoadSuccess = ({ numPages }) => {
+//     setNumPages(numPages);
+//   };
 
-  const onPageChange = (newPageNumber) => {
-    setPageNumber(newPageNumber);
-  };
+//   const onPageChange = (newPageNumber) => {
+//     setPageNumber(newPageNumber);
+//   };
 
   return (
     <div className="flex flex-col gap-y-2 justify-center items-center">
