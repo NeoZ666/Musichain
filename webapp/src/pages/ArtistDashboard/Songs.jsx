@@ -9,19 +9,29 @@ export default function Song() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:3001/api/v1/users/Drake/getSongs"
-        );
+        const storedUserData = localStorage.getItem("userData");
+        if (storedUserData) {
+          const parsedUserData = JSON.parse(storedUserData);
+          const finalName = parsedUserData.name.split(" ")[0];
+          const response = await fetch(
+            `http://localhost:3001/api/v1/users/${finalName}/getSongs`,
+            {
+              headers: {
+                Authorization: `Bearer ${parsedUserData.token}`, // Set Authorization header with the token
+              },
+            }
+          );
 
-        console.log(response);
+          console.log(response);
 
-        if (response.ok) {
-          const data = await response.json();
-          setSongs(data.artistSongs);
-          console.log( "DATA : ", data.artistSongs);
-          console.log({ data });
-        } else {
-          console.error("Failed to fetch artist data");
+          if (response.ok) {
+            const data = await response.json();
+            setSongs(data.artistSongs);
+            console.log("DATA : ", data.artistSongs);
+            console.log({ data });
+          } else {
+            console.error("Failed to fetch artist data");
+          }
         }
       } catch (error) {
         console.error("Error fetching artist data:", error);

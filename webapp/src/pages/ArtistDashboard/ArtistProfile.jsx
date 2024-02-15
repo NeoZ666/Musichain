@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import NeovisComp from "../../components/NeovisComp";
+// import NeovisComp from "../../components/NeovisComp";
 
 function SingleArtist() {
   const navigate = useNavigate();
@@ -101,9 +101,9 @@ function SingleArtist() {
         {/* Songs Section */}
         <div>
           <h1 className="text-5xl mt-10 mb-10 w-[80%]">Ownership Chart </h1>
-          <div className="w-[50%] mr-4">
+          {/* <div className="w-[50%] mr-4">
             <NeovisComp></NeovisComp>
-          </div>
+          </div> */}
           <h1 className="text-5xl mt-10">Songs from {info.name}</h1>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:grid-cols-1 mt-10 md:mt-10">
