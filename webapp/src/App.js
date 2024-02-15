@@ -20,6 +20,8 @@ import Pipeline from "../src/pages/ArtistDashboard/Pipeline";
 import Contract from "../src/pages/ArtistDashboard/Contract";
 import Songs from "../src/pages/ArtistDashboard/Songs";
 import ArtistProfile from "../src/pages/ArtistDashboard/ArtistProfile";
+import Summarization from "./pages/Summarization";
+import PdfViewer from "./pages/PdfViewer";
 
 function App() {
   return (
@@ -31,6 +33,10 @@ function App() {
       {/* Auth Routes */}
       <Routes>
         <Route path="/signup" element={<SignUp />} />
+      </Routes>
+
+      <Routes>
+        <Route path="/pdfviewer" element={<PdfViewer />} />
       </Routes>
 
       <Routes>
@@ -73,6 +79,10 @@ function App() {
         <Route path="/success" element={<SuccessPage />} />
       </Routes>
       <Toaster />
+
+      <Routes>
+        <Route path="/summarization" element={<Summarization/>} />
+      </Routes>
 
       <Routes>
         <Route path="/payment" element={<Payment />} />
