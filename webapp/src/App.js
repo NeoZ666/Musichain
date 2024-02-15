@@ -12,6 +12,9 @@ import Solidity from "./components/solidity/Solidity";
 import { Toaster } from "react-hot-toast";
 import Payment from "./pages/Payment";
 import SuccessPage from "./pages/SuccessPage";
+import Summarization from "./pages/Summarization";
+import PdfViewer from "./pages/PdfViewer";
+
 // import Access from "./components/Access";
 
 function App() {
@@ -24,6 +27,10 @@ function App() {
       {/* Auth Routes */}
       <Routes>
         <Route path="/signup" element={<SignUp />} />
+      </Routes>
+
+      <Routes>
+        <Route path="/pdfviewer" element={<PdfViewer />} />
       </Routes>
 
       <Routes>
@@ -59,6 +66,10 @@ function App() {
         CID={"bafybeiejzv6qwndwaifsdpo3lanmnpisbz3yyd5u6dbmnxxzqd6pdnmyxy"}
         flag={"false"}
       /> */}
+
+      <Routes>
+        <Route path="/summarization" element={<Summarization/>} />
+      </Routes>
 
       <Routes>
         <Route path="/payment" element={<Payment />} />

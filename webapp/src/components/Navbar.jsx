@@ -46,6 +46,12 @@ export default function Navbar() {
         <li>
           <NavLink to="/songs">SONGS</NavLink>
         </li>
+        <li>
+          <NavLink to="/summarization">SummarizAI</NavLink>
+        </li>
+        <li>
+            <NavLink to="/pdfviewer">Upload Contract</NavLink>
+          </li>
         {userData && (
           <li>
             <NavLink to="/upload">UPLOAD</NavLink>

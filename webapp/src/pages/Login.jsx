@@ -61,7 +61,7 @@ const Login = () => {
       <div className="bg-opacity-25 bg-blur w-96 p-8 rounded-md shadow-md">
         <h3 className="text-3xl font-bold text-white mb-4">Login</h3>
         <form onSubmit={handleSubmit}>
-        <div className="mb-4">
+          <div className="mb-4">
             <label
               htmlFor="email"
               className="block text-sm font-medium text-white"
