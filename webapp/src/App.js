@@ -18,6 +18,7 @@ import Songs from "../src/pages/ArtistDashboard/Songs";
 import ArtistProfile from "../src/pages/ArtistDashboard/ArtistProfile";
 import Analysis from "../src/pages/ArtistDashboard/Analysis";
 import PdfViewer from "./pages/ArtistDashboard/PdfViewer";
+import Review from "./pages/ArtistDashboard/Review";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path="/dashboard/contract" element={<PdfViewer />} />
           <Route path="/dashboard/songs" element={<Songs />} />
           <Route path="/dashboard/artistprofile" element={<ArtistProfile />} />
+          <Route path="/dashboard/review" element={<Review />} />
         </Route>
       </Routes>
 
