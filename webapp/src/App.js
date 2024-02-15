@@ -49,9 +49,9 @@ function App() {
         </Route>
       </Routes>
 
-      {/* <Routes>
+      <Routes>
         <Route path="/artist" element={<Artist />} />
-      </Routes> */}
+      </Routes>
 
       <Routes>
         <Route path="/artist/Drake" element={<SingleArtist />} />
