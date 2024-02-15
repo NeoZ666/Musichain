@@ -39,7 +39,8 @@ const Login = () => {
         localStorage.setItem(
           "userData",
           JSON.stringify({
-            name: formData.name
+            name: formData.name,
+            token: data.token,
           })
         );
 
