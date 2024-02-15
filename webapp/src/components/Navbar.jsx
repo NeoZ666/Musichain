@@ -48,9 +48,6 @@ export default function Navbar() {
         <li>
           <NavLink to="/songs">SONGS</NavLink>
         </li>
-        <li>
-          <NavLink to="/summarization">SummarizAI</NavLink>
-        </li>
       </ul>
 
       <button
