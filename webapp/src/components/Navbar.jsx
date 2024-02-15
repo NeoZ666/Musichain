@@ -48,12 +48,9 @@ export default function Navbar() {
         <li>
           <NavLink to="/songs">SONGS</NavLink>
         </li>
-        <button
-          onClick={() => handleNavigation("/signup")} // Corrected onClick handler
-          className="block md:text-[20px] md:py-4 md:px-8 py-2 px-4 bg-gradient-to-r from-lavender via-pink-400 to-dark_purple rounded-xl text-slate-200 hover:bg-dark_purple active:bg-light_purple md:hidden"
-        >
-          Get Started
-        </button>
+        <li>
+          <NavLink to="/summarization">SummarizAI</NavLink>
+        </li>
       </ul>
 
       <button

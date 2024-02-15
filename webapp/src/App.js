@@ -35,9 +35,9 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
       </Routes>
 
-      <Routes>
+      {/* <Routes>
         <Route path="/pdfviewer" element={<PdfViewer />} />
-      </Routes>
+      </Routes> */}
 
       <Routes>
         <Route path="/login" element={<Login />} />
