@@ -82,7 +82,8 @@ exports.getAllSongs = async (req, res) => {
 exports.getSongs = async (req, res) => {
   try {
     const {name} = req.user;
-    const artistSongs = await Song.find({ artistName: `${name}`});
+    const finalName = name.split(" ")[0];
+    const artistSongs = await Song.find({ artistName: finalName });
 
     res.status(200).json({
       message: "success",
