@@ -132,7 +132,7 @@ const UploadMusic = () => {
         const data = await res.json();
         console.log("Song is uploaded", data);
         toast.success("Upload successful");
-        navigate("/songs");
+        navigate("/dashboard/songs");
       } else {
         toast.error("Something went wrong");
         console.error("Upload failed");
