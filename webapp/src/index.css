@@ -131,3 +131,7 @@
   filter: blur(70px);
   transform: rotate(-53.13deg);
 } */
+
+.activeClass{
+  background-color: #ce68fe;
+}

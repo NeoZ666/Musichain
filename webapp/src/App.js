@@ -5,9 +5,6 @@ import SignUp from "./pages/Signup";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import Artist from "./pages/Artist";
-import SingleArtist from "./pages/SingleArtist";
-import Song from "./pages/Song";
-import Upload from "./pages/Upload";
 import Solidity from "./components/solidity/Solidity";
 import { Toaster } from "react-hot-toast";
 import Payment from "./pages/Payment";
@@ -17,10 +14,10 @@ import Dashboard from "./pages/Dashboard";
 import UploadMusic from "../src/pages/ArtistDashboard/UploadMusic";
 import Partners from "../src/pages/ArtistDashboard/Partners";
 import Pipeline from "../src/pages/ArtistDashboard/Pipeline";
-import Contract from "../src/pages/ArtistDashboard/Contract";
 import Songs from "../src/pages/ArtistDashboard/Songs";
 import ArtistProfile from "../src/pages/ArtistDashboard/ArtistProfile";
-import PdfViewer from "./pages/PdfViewer";
+import Analysis from "../src/pages/ArtistDashboard/Analysis";
+import PdfViewer from "./pages/ArtistDashboard/PdfViewer";
 
 function App() {
   return (
@@ -45,6 +42,7 @@ function App() {
       {/* SIDEBAR ROUTES */}
       <Routes>
         <Route element={<Dashboard />}>
+          <Route path="/dashboard/analysis" element={<Analysis />} />
           <Route path="/dashboard/uploadmusic" element={<UploadMusic />} />
           <Route path="/dashboard/partners" element={<Partners />} />
           <Route path="/dashboard/pipeline" element={<Pipeline />} />
@@ -56,18 +54,6 @@ function App() {
 
       <Routes>
         <Route path="/artist" element={<Artist />} />
-      </Routes>
-
-      <Routes>
-        <Route path="/artist/Drake" element={<SingleArtist />} />
-      </Routes>
-
-      <Routes>
-        <Route path="/songs" element={<Song />} />
-      </Routes>
-
-      <Routes>
-        <Route path="/upload" element={<Upload />} />
       </Routes>
 
       <Routes>
