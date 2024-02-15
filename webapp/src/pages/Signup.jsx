@@ -56,7 +56,7 @@ const SignUp = () => {
         );
 
         toast.success("Successfully Signed Up");
-        navigate("/");
+        navigate("/dashboard/uploadmusic");
       } else {
         toast.error("Something went wrong");
         console.error("Upload failed");
@@ -177,15 +177,15 @@ const SignUp = () => {
             type="submit"
             className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 bg-lavender"
           >
-            Sign Up
+            SIGNUP
           </button>
         </form>
-        {/* <p className="text-white mt-4">
+        <p className="text-white mt-4 text-center">
           Already have an account?{" "}
-          <Link href="/login" className="underline text-white">
-            Log in here
+          <Link to="/login" className="text-bold text-white">
+            LogIn
           </Link>
-        </p> */}
+        </p>
       </div>
     </div>
   );

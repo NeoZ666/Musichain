@@ -44,7 +44,7 @@ const Login = () => {
         );
 
         toast.success("Successfully Logged In");
-        navigate("/");
+        navigate("/dashboard/uploadmusic");
       } else {
         console.error("Upload failed");
       }
@@ -116,13 +116,13 @@ const Login = () => {
             type="submit"
             className="w-full bg-blue-500 bg-lavender text-white p-2 rounded-md hover:bg-blue-600"
           >
-            Login
+            LOGIN
           </button>
         </form>
-        <p className="text-white mt-4">
+        <p className="text-white mt-4 text-center">
           Don't have an account?{" "}
-          <Link to="/signup" className="underline">
-            Sign up here
+          <Link to="/signup" className="text-bold">
+            Sign Up
           </Link>
         </p>
       </div>
