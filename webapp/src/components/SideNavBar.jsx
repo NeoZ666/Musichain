@@ -104,7 +104,7 @@ function SideNavBar() {
                 Summarize Contracts
               </NavLink>
             </div>
-            <div
+            {/* <div
               className="p-2.5 mt-2 flex items-end rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600"
               onClick={dropDown}
             >
@@ -119,8 +119,8 @@ function SideNavBar() {
                   ^
                 </span>
               </div>
-            </div>
-            <div
+            </div> */}
+            {/* <div
               className={`leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto ${
                 submenuOpen ? "" : "hidden"
               }`}
@@ -134,7 +134,7 @@ function SideNavBar() {
               <h1 className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">
                 Friends
               </h1>
-            </div>
+            </div> */}
 
             <div className="absolute w-[94%] bottom-16 p-2.5 mt-2 flex bg-blue-300 items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
               {/* PROFILE */}
