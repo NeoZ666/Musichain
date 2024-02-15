@@ -46,13 +46,16 @@ const SignUp = () => {
 
       if (res.ok) {
         const data = await res.json();
-        console.log("Data is uploaded", data);
+        console.log("Data is uploaded", data.user);
+
+        console.log(formData);
 
         localStorage.setItem(
           "userData",
           JSON.stringify({
             name: formData.name,
-            token: data.token
+            token: data.token,
+            image: data.data.user.file
           })
         );
 

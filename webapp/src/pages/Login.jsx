@@ -36,21 +36,24 @@ const Login = () => {
         const data = await res.json();
         console.log("Data is uploaded", data);
 
+        console.log(formData);  
+
         localStorage.setItem(
           "userData",
           JSON.stringify({
             name: formData.name,
             token: data.token,
+            image: data.data.user.file
           })
         );
 
         toast.success("Successfully Logged In");
-        navigate("/dashboard/uploadmusic");
+        navigate("/dashboard/artistprofile");
       } else {
         console.error("Upload failed");
       }
 
-      console.log("Response from server:", res); // Log the entire response
+      // console.log("Response from server:", res); // Log the entire response
     } catch (error) {
       toast.error("Something went wrong");
       console.error("Error occurred:", error);

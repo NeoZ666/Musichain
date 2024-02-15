@@ -7,6 +7,8 @@ const fs = require("fs");
 const multer = require("multer");
 const uploadMiddleware = multer({ dest: "./uploads/" });
 
+
+// SIGN THE TOKEN
 const signToken = (id) => {
   return jwt.sign(
     { id },
@@ -17,7 +19,7 @@ const signToken = (id) => {
   );
 };
 
-// 1 :
+// CREATE THE TOKEN AND SEND -
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
 
@@ -42,19 +44,19 @@ const createSendToken = (user, statusCode, res) => {
   });
 };
 
-// 2 :
+// UPLOAD FILE -
 exports.uploadFile = uploadMiddleware.single("file");
 exports.signup = async (req, res, next) => {
   try {
     console.log("REQ FILE :", req.file);
 
-    // const { originalname, path } = req.file;
-    // const ext = originalname.split(".")[1];
+    const { originalname, path } = req.file;
+    const ext = originalname.split(".")[1];
 
-    // console.log(ext);
+    console.log(ext);
 
-    // const newPath = path + "." + ext;
-    // fs.renameSync(path, newPath);
+    const newPath = path + "." + ext;
+    fs.renameSync(path, newPath);
 
     // 1) Check if the user has all the fields filled :
     const {
@@ -62,7 +64,7 @@ exports.signup = async (req, res, next) => {
       email,
       password,
       walletAddress,
-      // file = newPath,
+      file = newPath,
       role,
     } = req.body;
     // 2) Check for existing user with same email address :
@@ -76,7 +78,7 @@ exports.signup = async (req, res, next) => {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      // file: (req.body.file = newPath),
+      file: (req.body.file = newPath),
       walletAddress: req.body.walletAddress,
       role: req.body.role,
     });
@@ -118,9 +120,8 @@ exports.login = async (req, res, next) => {
 };
 
 // ALL ARTIST PAGE GET ROUTE
-exports.getArtistInfo = async (req, res) => {
+exports.getSingleArtistSong = async (req, res) => {
   try {
-
     console.log( "REQ USER : ", req.user);
 
     // Fetch users where role equals 'artist'
@@ -133,30 +134,10 @@ exports.getArtistInfo = async (req, res) => {
   }
 };
 
-// NOT REQURIED :
-exports.getAllUsers = async (req, res) => {
-  try {
-    // Fetch all users
-    const users = await User.find({});
-
-    res.status(200).json(users); // Send all users in the response
-  } catch (err) {
-    console.error("ERROR", err);
-    res.status(500).json({ message: "Internal server error" });
-  }
-};
-
-// SINGLE USER NAME
-exports.artistProfile = async (req, res) => {
-  try {
-    const getArtistProfile = await User.find({});
-  } catch (error) {
-    
-  }
-};
-
+// GET SINGLE ARTIST INFO -
 exports.getSingleArtist = async(req, res) => {
   try{
+    console.log(req.user);
     const {id} = req.user;
 
     const artist = await User.findById(id);
@@ -169,6 +150,29 @@ exports.getSingleArtist = async(req, res) => {
   }
 }
 
+// NOT REQURIED :
+// exports.getAllUsers = async (req, res) => {
+//   try {
+//     // Fetch all users
+//     const users = await User.find({});
+//     res.status(200).json(users); // Send all users in the response
+//   } catch (err) {
+//     console.error("ERROR", err);
+//     res.status(500).json({ message: "Internal server error" });
+//   }
+// };
+
+// SINGLE USER NAME -
+// exports.artistProfile = async (req, res) => {
+//   try {
+//     const getArtistProfile = await User.find({});
+//   } catch (error) {
+    
+//   }
+// };
+
+
+// JWT TOKEN VALIDATION -
 exports.protect = async (req, res, next) => {
   let token;
   console.log( "HEADER : ", req.headers.authorization);

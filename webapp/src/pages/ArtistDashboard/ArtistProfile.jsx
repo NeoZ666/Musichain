@@ -7,80 +7,16 @@ function SingleArtist() {
 
   const [songs, setSongs] = useState([]);
   const [info, setInfo] = useState([]);
-  const [userData, setUserData] = useState(null);
-
-  useEffect(() => {
-    const fetchSongs = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:3001/api/v1/users/getSingleArtist"
-        );
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok.");
-        }
-
-        const data = await response.json();
-
-        setSongs(data.artistSongs);
-      } catch (error) {
-        console.error("Error fetching songs:", error);
-        // Handle errors here, e.g., set an error state or show a message to the user
-      }
-    };
-
-    fetchSongs();
-  }, []); // Add an empty dependency array to run this effect only once (on mount)
-
-  //   useEffect(() => {
-  //   // Retrieve user information from local storage
-  //   const storedUserData = localStorage.getItem("userData");
-  //   if (storedUserData) {
-  //     const parsedUserData = JSON.parse(storedUserData);
-  //     setUserData(parsedUserData);
-  //     console.log("Token : ", parsedUserData.token);
-  //   }
-  // }, []);
-
-  // console.log(userData.token);
-
-  // useEffect(() => {
-  //   const fetchArtist = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         "http://localhost:3001/api/v1/users/getSingleArtist",
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${userData?.token}`, // Set Authorization header with the token
-  //           },
-  //         }
-  //       );
-
-  //       if (!response.ok) {
-  //         throw new Error("Network response was not ok.");
-  //       }
-
-  //       const data = await response.json();
-
-  //       console.log("DATA : ", data);
-
-  //       setInfo(data);
-  //     } catch (error) {
-  //       console.error("Error fetching songs:", error);
-  //       // Handle errors here, e.g., set an error state or show a message to the user
-  //     }
-  //   };
-
-  //   fetchArtist();
-  // }, []); // Add an empty dependency array to run this effect only once (on mount)
+  const [imageData, setImageData] = useState(null);
 
   useEffect(() => {
     // Retrieve user information from local storage
     const storedUserData = localStorage.getItem("userData");
     if (storedUserData) {
       const parsedUserData = JSON.parse(storedUserData);
-      setUserData(parsedUserData);
-      console.log("Token : ", parsedUserData.token);
+      setImageData(parsedUserData.image);
+
+      console.log("Parsed Data : ", parsedUserData);
 
       const fetchArtist = async () => {
         try {
@@ -99,7 +35,7 @@ function SingleArtist() {
 
           const data = await response.json();
 
-          console.log("DATA : ", data);
+          console.log("Response DATA : ", data);
 
           setInfo(data);
         } catch (error) {
@@ -109,19 +45,49 @@ function SingleArtist() {
       };
 
       fetchArtist();
+
+      const fetchSongs = async () => {
+        try {
+          const response = await fetch(
+            "http://localhost:3001/api/v1/users/getSingleArtistSong",
+            {
+              headers: {
+                Authorization: `Bearer ${parsedUserData.token}`, // Set Authorization header with the token
+              },
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("Network response was not ok.");
+          }
+
+          const data = await response.json();
+
+          console.log("getSingleArtistSong DATA : ", data);
+          setSongs(data.artistSongs);
+        } catch (error) {
+          console.error("Error fetching songs:", error);
+          // Handle errors here, e.g., set an error state or show a message to the user
+        }
+      };
+
+      fetchSongs();
     }
   }, []);
+
+  console.log(imageData);
 
   return (
     <div className="mb-10">
       <div className="w-[80%] mx-auto">
         <div className="flex justify-center items-center gap-x-10">
-          {/* <img
-            src="http://localhost:3001/c9def01cdf4c50a8f08a4a16c2809713.jpg"
-            alt="Drake"
-            width={500}
-            className="rounded-[70px] border border-slate-200 p-2"
-          /> */}
+          {imageData && (
+            <img
+              src={`http://localhost:3001/${imageData.split("\\")[1]}`}
+              alt="Profile"
+              className=" rounded-sm border border-slate-200 p-2 w-[400px] h-[400px] object-cover"
+            />
+          )}
           <div>
             <h1 className="text-6xl font-bold mb-10">{info.name}</h1>
             <p>
@@ -139,8 +105,8 @@ function SingleArtist() {
           <h1 className="text-5xl mt-10">Songs from {info.name}</h1>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:grid-cols-1 mt-10 md:mt-10">
-            {songs.length > 0 ? (
-              songs.map((item, i) => {
+            {songs?.length > 0 ? (
+              songs?.map((item, i) => {
                 const imagePath = item.songFile.split("\\")[1];
 
                 return (

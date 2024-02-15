@@ -10,7 +10,7 @@ function Features() {
         <div className="h-[200px] w-56 gradient-02 -z-10"></div>
       </div>
 
-      <div className="mt-5 mx-5 grid grid-cols-1 md:grid-cols-3 gap-y-5 md:flex-row md:mx-auto md:gap-x-5 md:w-[80%]">
+      <div className="mt-5 mx-5 grid grid-cols-1 md:grid-cols-3 gap-y-5 md:-mt-52 md:flex-row md:mx-auto md:gap-x-5 md:w-[80%]">
         <div className="bg-light_gray p-5 rounded-2xl flex flex-col items-center gap-y-4 text-center md:gap-y-10 md:py-10">
           <img
             className="w-[100px]"

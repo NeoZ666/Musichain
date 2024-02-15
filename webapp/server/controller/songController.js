@@ -81,7 +81,8 @@ exports.getAllSongs = async (req, res) => {
 
 exports.getSongs = async (req, res) => {
   try {
-    const artistSongs = await Song.find({ artistName: "Drake" });
+    const {name} = req.user;
+    const artistSongs = await Song.find({ artistName: `${name}`});
 
     res.status(200).json({
       message: "success",
