@@ -90,7 +90,6 @@ function AppForm() {
             toast.success("Event emitted successfully");
         } catch (error) {
             console.error("Error emitting event:", error);
-            toast.error("Error emitting event");
         }
     }
     navigate("/success");

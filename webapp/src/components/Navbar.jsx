@@ -31,30 +31,30 @@ export default function Navbar() {
   // };
 
   return (
-    <nav className="flex flex-col justify-around items-center pt-5 md:flex-row">
+    <nav className="flex flex-col md:mx-44 justify-between items-center pt-5 md:flex-row">
       <NavLink to="/" className="flex flex-row items-center">
         <img
           className="w-[50px]"
           src="./images/MUSICHAIN.png"
           alt="Musichain"
         />
-        <p>Musichain</p>
+        <p>Sollertia</p>
       </NavLink>
 
-      <ul className="flex gap-x-10 justify-center items-center">
+      {/* <ul className="flex gap-x-10 justify-center items-center">
         <li>
           <NavLink to="/artist">ARTISTS</NavLink>
         </li>
         <li>
           <NavLink to="/songs">SONGS</NavLink>
         </li>
-      </ul>
+      </ul> */}
 
       <button
         onClick={() => handleNavigation("/signup")} // Corrected onClick handler
         className="md:text-[20px] md:py-4 md:px-8 py-2 px-4 bg-gradient-to-r from-lavender via-pink-400 to-dark_purple rounded-xl text-slate-200 hover:bg-dark_purple active:bg-light_purple"
       >
-        Get Started
+        Sign up
       </button>
     </nav>
   );

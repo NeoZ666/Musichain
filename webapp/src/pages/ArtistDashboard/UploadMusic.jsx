@@ -30,6 +30,15 @@ const UploadMusic = () => {
       const fileCid = await nftstorage.storeBlob(fileBlob);
       console.log({ fileCid });
 
+      // Step 1: Retrieve existing data from localStorage
+      const existingData = JSON.parse(localStorage.getItem("userData")) || {};
+
+      // Step 2: Append the new fileCID
+      existingData.fileCID = fileCid;
+
+      // Step 3: Save the updated data back to localStorage
+      localStorage.setItem("userData", JSON.stringify(existingData));
+
       setCID(fileCid);
     };
   }

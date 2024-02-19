@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// import '@coreui/coreui/dist/css/coreui.min.css';
+
 import SignUp from "./pages/Signup";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
@@ -19,7 +21,9 @@ import ArtistProfile from "../src/pages/ArtistDashboard/ArtistProfile";
 import Analysis from "../src/pages/ArtistDashboard/Analysis";
 import PdfViewer from "./pages/ArtistDashboard/PdfViewer";
 import Review from "./pages/ArtistDashboard/Review";
+import { registerLicense } from '@syncfusion/ej2-base'
 
+registerLicense('Ngo9BigBOggjHTQxAR8/V1NHaF5cWWdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWX1fdnRUQ2lYWEB+X0A=')
 function App() {
   return (
     <BrowserRouter>
@@ -31,11 +35,7 @@ function App() {
       <Routes>
         <Route path="/signup" element={<SignUp />} />
       </Routes>
-
-      {/* <Routes>
-        <Route path="/pdfviewer" element={<PdfViewer />} />
-      </Routes> */}
-
+      
       <Routes>
         <Route path="/login" element={<Login />} />
       </Routes>

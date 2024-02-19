@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import NeovisComp from "../../components/NeovisComp";
+import NeovisComp from "../../components/NeovisComp";
+import Analysis from "./Analysis";
+// import Maps from "../../components/Maps";
 
 function SingleArtist() {
   const navigate = useNavigate();
@@ -79,7 +81,7 @@ function SingleArtist() {
 
   return (
     <div className="mb-10">
-      <div className="w-[80%] mx-auto">
+      <div className="w-[80%]">
         <div className="flex justify-center items-center gap-x-10">
           {imageData && (
             <img
@@ -101,10 +103,12 @@ function SingleArtist() {
         {/* Songs Section */}
         <div>
           <h1 className="text-5xl mt-10 mb-10 w-[80%]">Ownership Chart </h1>
-          {/* <div className="w-[50%] mr-4">
+          <div className="w-[50%] mr-4">
             <NeovisComp></NeovisComp>
-          </div> */}
-          <h1 className="text-5xl mt-10">Songs from {info.name}</h1>
+          </div>
+
+          {/* <h1 className="text-5xl mt-10">Songs from {info.name}</h1> */}
+          <h1 className="text-5xl mt-10">Traffic Analytics</h1>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:grid-cols-1 mt-10 md:mt-10">
             {songs?.length > 0 ? (
@@ -136,11 +140,14 @@ function SingleArtist() {
                 );
               })
             ) : (
-              <p>No songs available</p>
+              <p></p>
             )}
           </div>
         </div>
       </div>
+
+      <Analysis />
+      {/* <Maps></Maps> */}
     </div>
   );
 }
