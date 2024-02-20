@@ -1,6 +1,4 @@
-
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
@@ -9,6 +7,19 @@ import toast from "react-hot-toast";
 function SideNavBar() {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [role, setRole] = useState("");
+
+  // ROLE ACCESS -
+  useEffect(() => {
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      const parsedUserData = JSON.parse(storedUserData);
+      console.log(parsedUserData);
+
+      setRole(parsedUserData.role);
+    }
+  }, []);
 
   const handleLogout = () => {
     // Clear the localStorage
@@ -57,73 +68,156 @@ function SideNavBar() {
           <hr className="my-2 text-gray-600" />
 
           <ul>
-            <NavLink
-              to={"/dashboard/pipeline"}
-              className={({isActive}) =>
-                `${
-                  isActive ? "bg-lavender/30" : ""
-                } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
-              }
-            >
-              {/* END-TO-END PIPELINE ICON */}
-              <div className="text-[15px] ml-4 text-gray-200">Pipeline</div>
-            </NavLink>
-            <NavLink
-              to={"/dashboard/songs"}
-              className={({isActive}) =>
-                `${
-                  isActive ? "bg-lavender/30" : ""
-                } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
-              }
-            >
-              {/* SONGS ICON */}
-              <div className="text-[15px] ml-4 text-gray-200">Songs</div>
-            </NavLink>
-            <NavLink
-              to={"/dashboard/uploadmusic"}
-              className={({isActive}) =>
-                `${
-                  isActive ? "bg-lavender/30" : ""
-                } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
-              }
-            >
-              {/* UPLOAD MUSIC ICON */}
-              <div className="text-[15px] ml-4 text-gray-200">Upload Music</div>
-            </NavLink>
-            <NavLink
-              to={"/dashboard/partners"}
-              className={({isActive}) =>
-                `${
-                  isActive ? "bg-lavender/30" : ""
-                } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
-              }
-            >
-              {/* MUSIC ICON */}
-              <div className="text-[15px] ml-4 text-gray-200">
-                Be Our Partners
-              </div>
-            </NavLink>
-            <NavLink
-              to={"/dashboard/contract"}
-              className={({isActive}) =>
-                `${
-                  isActive ? "bg-lavender/30" : ""
-                } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
-              }
-            >
-              {/* SUMMARIZE CONTRACTS ICON */}
-              <div className="text-[15px] ml-4 text-gray-200">
-                Summarize Contracts
-              </div>
-            </NavLink>
+            {/* ARTIST SIDEBAR LINKS */}
+            {/* Write logic for - If role is not undefined then donot render only, if not undefined and equal to Artist then render something */}
+            {role === "Artist" && (
+              <>
+                <NavLink
+                  to={"/dashboard/pipeline"}
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "bg-lavender/30" : ""
+                    } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
+                  }
+                >
+                  {/* END-TO-END PIPELINE ICON */}
+                  <div className="text-[15px] ml-4 text-gray-200">Pipeline</div>
+                </NavLink>
+                <NavLink
+                  to={"/dashboard/songs"}
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "bg-lavender/30" : ""
+                    } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
+                  }
+                >
+                  {/* SONGS ICON */}
+                  <div className="text-[15px] ml-4 text-gray-200">Songs</div>
+                </NavLink>
+                <NavLink
+                  to={"/dashboard/uploadmusic"}
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "bg-lavender/30" : ""
+                    } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
+                  }
+                >
+                  {/* UPLOAD MUSIC ICON */}
+                  <div className="text-[15px] ml-4 text-gray-200">
+                    Upload Music
+                  </div>
+                </NavLink>
+                <NavLink
+                  to={"/dashboard/partners"}
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "bg-lavender/30" : ""
+                    } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
+                  }
+                >
+                  {/* MUSIC ICON */}
+                  <div className="text-[15px] ml-4 text-gray-200">
+                    Be Our Partners
+                  </div>
+                </NavLink>
+                <NavLink
+                  to={"/dashboard/contract"}
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "bg-lavender/30" : ""
+                    } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
+                  }
+                >
+                  {/* SUMMARIZE CONTRACTS ICON */}
+                  <div className="text-[15px] ml-4 text-gray-200">
+                    Summarize Contracts
+                  </div>
+                </NavLink>
+              </>
+            )}
+
+            {role === "Company" && (
+              <>
+                <NavLink
+                  to={"/dashboard/allsongs"}
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "bg-lavender/30" : ""
+                    } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
+                  }
+                >
+                  {/* END-TO-END PIPELINE ICON */}
+                  <div className="text-[15px] ml-4 text-gray-200">Songs</div>
+                </NavLink>
+                <NavLink
+                  to={"/dashboard/allartist"}
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "bg-lavender/30" : ""
+                    } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
+                  }
+                >
+                  {/* SONGS ICON */}
+                  <div className="text-[15px] ml-4 text-gray-200">Artists</div>
+                </NavLink>
+                {/* <NavLink
+                  to={"/dashboard/uploadmusic"}
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "bg-lavender/30" : ""
+                    } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
+                  }
+                >
+                  <div className="text-[15px] ml-4 text-gray-200">
+                    Upload Music
+                  </div>
+                </NavLink>
+                <NavLink
+                  to={"/dashboard/partners"}
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "bg-lavender/30" : ""
+                    } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
+                  }
+                >
+                  <div className="text-[15px] ml-4 text-gray-200">
+                    Be Our Partners
+                  </div>
+                </NavLink>
+                <NavLink
+                  to={"/dashboard/contract"}
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "bg-lavender/30" : ""
+                    } p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer`
+                  }
+                >
+                  <div className="text-[15px] ml-4 text-gray-200">
+                    Summarize Contracts
+                  </div>
+                </NavLink> */}
+              </>
+            )}
+
+            {/* BOOTOM SIDEBAR LINKS */}
             <li className="absolute w-[94%] bottom-16 p-2.5 mt-2 flex bg-blue-300 items-center rounded-md px-4 duration-300 cursor-pointer bg-purple  hover:bg-blue-600 hover:bg-dark_purple">
               {/* PROFILE */}
-              <Link
-                to={"/dashboard/artistprofile"}
-                className="text-[15px]  ml-4 text-gray-200"
-              >
-                PROFILE
-              </Link>
+              {role === "Artist" && (
+                <Link
+                  to={"/dashboard/artistprofile"}
+                  className="text-[15px]  ml-4 text-gray-200"
+                >
+                  PROFILE
+                </Link>
+              )}
+              {role === "Company" && (
+                <Link
+                  to={"/dashboard/companyprofile"}
+                  className="text-[15px]  ml-4 text-gray-200"
+                >
+                  PROFILE
+                </Link>
+              )}
             </li>
             <li className="absolute w-[94%] bottom-2 p-2.5 mt-2 flex bg-red-400 items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-red-600">
               {/* LOGOUT */}

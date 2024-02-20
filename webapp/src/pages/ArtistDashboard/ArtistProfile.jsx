@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import NeovisComp from "../../components/NeovisComp";
-import Analysis from "./Analysis";
+// import NeovisComp from "../../components/NeovisComp";
+// import Analysis from "./Analysis";
 // import Maps from "../../components/Maps";
 
 function SingleArtist() {
@@ -104,7 +104,7 @@ function SingleArtist() {
         <div>
           <h1 className="text-5xl mt-10 mb-10 w-[80%]">Ownership Chart </h1>
           <div className="w-[50%] mr-4">
-            <NeovisComp></NeovisComp>
+            {/* <NeovisComp></NeovisComp> */}
           </div>
 
           {/* <h1 className="text-5xl mt-10">Songs from {info.name}</h1> */}
@@ -146,7 +146,7 @@ function SingleArtist() {
         </div>
       </div>
 
-      <Analysis />
+      {/* <Analysis /> */}
       {/* <Maps></Maps> */}
     </div>
   );
