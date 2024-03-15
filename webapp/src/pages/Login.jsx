@@ -44,7 +44,7 @@ const Login = () => {
             name: formData.name,
             token: data.token,
             image: data.data.user.file,
-            role: data.data.user.role
+            role: "Artist"
           })
         );
 

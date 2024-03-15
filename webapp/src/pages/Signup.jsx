@@ -10,7 +10,7 @@ const SignUp = () => {
     email: "",
     walletAddress: "",
     password: "",
-    role: "user",
+    role: "Artist",
     file: "",
   });
 
@@ -32,6 +32,9 @@ const SignUp = () => {
     formDataToSend.append("password", formData.password);
     formDataToSend.append("role", formData.role);
     formDataToSend.append("file", formData.file); // Append file
+
+    console.log("FormDataToSend : ", formDataToSend);
+    console.log("FormData : ", formData);
 
     const requestOptions = {
       method: "POST",
@@ -56,7 +59,7 @@ const SignUp = () => {
             name: formData.name,
             token: data.token,
             image: data.data.user.file,
-            role: data.data.user.role
+            role: data.data.user.role,
           })
         );
 
@@ -74,8 +77,14 @@ const SignUp = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
       <div className="bg-opacity-25 bg-blur w-96 p-8 rounded-md shadow-md">
-      <img src="/images/MUSICHAIN.png" alt="LOGO" className="mx-auto h-[50px]" />
-        <h3 className="text-4xl font-bold text-white mb-4 text-center">Sign Up</h3>
+        <img
+          src="/images/MUSICHAIN.png"
+          alt="LOGO"
+          className="mx-auto h-[50px]"
+        />
+        <h3 className="text-4xl font-bold text-white mb-4 text-center">
+          Sign Up
+        </h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             {" "}
@@ -170,12 +179,13 @@ const SignUp = () => {
               id="role"
               name="role"
               value={formData.role}
+              // onInput={(e) => formData({ role: e.target.value })}
               onChange={handleChange}
               className="mt-1 p-2 w-full border rounded-md"
-              style={{color: "black"}}
+              style={{ color: "black" }}
             >
-              <option value="artist">Artist</option>
-              <option value="artist">Company</option>
+              <option value="Artist">Artist</option>
+              <option value="Company">Company</option>
             </select>
           </div>
           <button
