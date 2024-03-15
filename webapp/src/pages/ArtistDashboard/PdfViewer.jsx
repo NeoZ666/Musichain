@@ -28,8 +28,8 @@ function App() {
           setPdfText(extractedText);
 
           // Azure Text Analytics API credentials
-          const apiKey = APIKEY;
-          const endpoint = ENDPOINT;
+          const apiKey = "APIKEY";
+          const endpoint = "ENDPOINT";
 
           const client = new TextAnalysisClient(endpoint, new AzureKeyCredential(apiKey));
           const actions = [

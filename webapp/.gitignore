@@ -24,3 +24,4 @@ yarn-error.log*
 
 .env
 /src/payments/node_modules
+.vercel
