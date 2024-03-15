@@ -38,7 +38,7 @@ export default function Navbar() {
           src="./images/MUSICHAIN.png"
           alt="Musichain"
         />
-        <p>Sollertia</p>
+        <p>MusiChain</p>
       </NavLink>
 
       {/* <ul className="flex gap-x-10 justify-center items-center">
