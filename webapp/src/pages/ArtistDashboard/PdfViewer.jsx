@@ -28,8 +28,8 @@ function App() {
           setPdfText(extractedText);
 
           // Azure Text Analytics API credentials
-          const apiKey = '2a689840448d4661b85c2f69624d6b8b';
-          const endpoint = 'https://musichain.cognitiveservices.azure.com/';
+          const apiKey = 'APIKEY';
+          const endpoint = 'ENDPOINT';
 
           const client = new TextAnalysisClient(endpoint, new AzureKeyCredential(apiKey));
           const actions = [
