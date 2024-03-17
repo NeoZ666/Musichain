@@ -16,7 +16,7 @@ function Footer() {
       <div className="rounded-xl my-5 w-full h-[1.2px] bg-slate-400"></div>
 
       <div className="flex flex-col gap-6 md:flex-row md:justify-between">
-        <h3 className="text-2xl font-bold">SOLLERTIA</h3>
+        <h3 className="text-2xl font-bold">MUSICHAIN</h3>
         <p>Copyright &copy; 2023 MusiChain. All rights reserved.</p>
       </div>
       <div className="my-5 flex gap-4">

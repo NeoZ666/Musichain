@@ -46,7 +46,7 @@ function SideNavBar() {
           <div className="p-2.5 mt-1 flex items-center rounded-md ">
             {/* LOGO */}
             <h1 className="text-[15px] ml-3 text-xl text-gray-200 font-bold">
-              Sollertia
+              Musichain
             </h1>
 
             {/* CLOSE ICON */}
