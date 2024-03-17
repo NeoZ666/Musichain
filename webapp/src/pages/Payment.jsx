@@ -151,7 +151,7 @@ function Payment() {
                 1 Month Subscription
               </h2>
               <p className="leading-relaxed">
-                Get the monthly premium subscription of Musichain.
+                Get the monthly premium subscription of Sollertia.
               </p>
               <button
                 type="button"
@@ -174,7 +174,7 @@ function Payment() {
                 6 Months Subscription
               </h2>
               <p className="leading-relaxed">
-                Get the half-yearly premium subscription of Musichain.
+                Get the half-yearly premium subscription of Sollertia.
               </p>
               <button
                 type="button"
@@ -197,7 +197,7 @@ function Payment() {
                 Annual Subscription
               </h2>
               <p className="leading-relaxed">
-                Get the yearly premium subscription of Musichain.
+                Get the yearly premium subscription of Sollertia.
               </p>
               <button
                 type="button"

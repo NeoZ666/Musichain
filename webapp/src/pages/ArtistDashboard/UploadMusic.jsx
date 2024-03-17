@@ -53,7 +53,7 @@ const UploadMusic = () => {
         username: parsedUserData.name || "Drake",
       }));
 
-      console.log(setArtistInput);
+      // console.log(setArtistInput);
     }
   }, []);
 

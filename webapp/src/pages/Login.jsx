@@ -43,7 +43,8 @@ const Login = () => {
           JSON.stringify({
             name: formData.name,
             token: data.token,
-            image: data.data.user.file
+            image: data.data.user.file,
+            role: "Artist"
           })
         );
 
